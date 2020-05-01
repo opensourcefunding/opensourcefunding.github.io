@@ -6,15 +6,110 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Open Source Funding</title>
   <style>
+    :root {
+      --text-color: #333333;
+      --link-color: #666666;
+      --link-color-active: #333333;
+      --background-color: #eeeeee;
+      --background-color-button: #dddddd;
+      --border-color: #dddddd;
+    }
     body {
+      width: 100vw;
+      min-height: 100vh;
       margin: 0;
-      padding: 1.5rem;
+      padding: 0;
       font-family: 'Helvetica Neue', Arial, sans-serif;
       font-weight: normal;
       line-height: 1.5;
-      min-height: 100vh;
+      color: var(--text-color);
       box-sizing: border-box;
       -webkit-font-smoothing: antialiased;
+      display: flex;
+      flex-flow: column;
+    }
+    nav > ul {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-flow: row nowrap;
+    }
+    nav > ul > li {
+      margin: 0;
+      padding: 0;
+      flex: 0 0 auto;
+      list-style: none;
+    }
+    nav > ul > li > a {
+      display: block;
+      margin: 0;
+      padding: .5rem;
+      color: var(--link-color);
+      text-decoration: none;
+    }
+    nav > ul > li > a:focus, nav > ul > li > a:hover {
+      color: var(--link-color-active);
+      text-decoration: underline;
+    }
+    header {
+      flex: 0 0 auto;
+      box-sizing: border-box;
+      border-bottom: 1px solid var(--border-color);
+    }
+    main {
+      flex: 1 1 100%;
+      padding: 1.5rem;
+      box-sizing: border-box;
+    }
+    footer {
+      flex: 0 0 auto;
+      box-sizing: border-box;
+      background-color: var(--background-color);
+      border-top: 1px solid var(--border-color);
+    }
+    footer > nav > ul {
+      justify-content: center;
+    }
+    fieldset {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      margin: 0 0 1.5rem 0;
+      padding: 0;
+      border: none;
+    }
+    fieldset > legend {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      grid-column: 1 / span 2;
+    }
+    fieldset > p {
+      margin: 0 0 0.5rem 0;
+      grid-column: 1 / span 2;
+      color: var(--link-color);
+    }
+    fieldset > button {
+      grid-column: 1 / span 2;
+      justify-self: start;
+    }
+    fieldset > input, fieldset > select, fieldset > textarea {
+      font: inherit;
+      line-height: inherit;
+      vertical-align: middle;
+      justify-self: start;
+    }
+    fieldset > label {
+      vertical-align: middle;
+    }
+    button {
+      padding: 0.25rem 1rem;
+      font: inherit;
+      color: var(--link-color);
+      line-height: 1.5rem;
+      font-weight: bold;
+      vertical-align: middle;
+      border: none;
+      border-radius: 0.125rem;
+      background-color: var(--background-color-button);
     }
   </style>
   <link rel="stylesheet" href="styles.css">
@@ -30,9 +125,305 @@
 
 <body>
 
-  <h1>Open Source Funding - A Survey</h1>
+  <header>
+    <nav aria-label="main navigation">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/">Survey</a></li>
+        <li><a href="/">Results</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <p>Coming soon...</p>
+  <main>
+
+    <h1>Survey</h1>
+
+    <form aria-label="survey">
+
+      <h2>Intro</h2>
+
+      <fieldset id="relation">
+
+        <legend>What is your relation to OpenSource?</legend>
+
+        <input id="relation-contributor" type="radio" name="relation" value="contributor">
+        <label for="relation-contributor">Contributor / Maintainer</label>
+
+        <input id="relation-user" type="radio" name="relation" value="consumer">
+        <label for="relation-user">Consumer / User</label>
+
+        <input id="relation-both" type="radio" name="relation" value="both">
+        <label for="relation-both">Both</label>
+
+        <button type="button">Next</button>
+
+      </fieldset>
+
+      <fieldset id="motivation_contributors">
+
+        <legend>What are your main motivations for contributing to OpenSource projects?</legend>
+        <p>You can select multiple options.</p>
+
+        <input type="checkbox" name="motivation_contributors-sharing" id="motivation_contributors-sharing">
+        <label for="motivation_contributors-sharing">Giving back the community/ Sharing knowledge/ Creating better software</label>
+
+        <input type="checkbox" name="motivation_contributors-recognition" id="motivation_contributors-recognition">
+        <label for="motivation_contributors-recognition">Recognition/ Building a portfolio/ Career advancement</label>
+
+        <input type="checkbox" name="motivation_contributors-passion" id="motivation_contributors-passion">
+        <label for="motivation_contributors-passion">Self-realisation/ Working on projects you care about</label>
+
+        <label for="motivation_contributors-other">Others</label>
+        <textarea name="motivation_contributors-other" id="motivation_contributors-other"></textarea>
+
+        <button type="button">Next</button>
+
+      </fieldset>
+
+      <fieldset id="motivation_consumers">
+
+        <legend>What are your main motivations for using OpenSource software?</legend>
+        <p>You can select multiple options.</p>
+
+        <input type="checkbox" name="motivation_consumers-free" id="motivation_consumers-free">
+        <label for="motivation_consumers-free">Free to use</label>
+
+        <input type="checkbox" name="motivation_consumers-trust" id="motivation_consumers-trust">
+        <label for="motivation_consumers-trust">Trustworthy/ Transparent (no proprietary code)</label>
+
+        <input type="checkbox" name="motivation_consumers-independent" id="motivation_consumers-independent">
+        <label for="motivation_consumers-independent">Vendor independent</label>
+
+        <label for="motivation_consumers-other">Others</label>
+        <textarea name="motivation_consumers-other" id="motivation_consumers-other"></textarea>
+
+        <button type="button">Next</button>
+
+      </fieldset>
+
+      <fieldset id="motivation_incentive">
+
+        <legend>Would financial incentives/rewards have a positive impact on your work on OpenSource projects?</legend>
+
+        <input type="radio" name="motivation_incentive" value="yes" id="motivation_incentive-yes">
+        <label for="motivation_incentive-yes">Yes</label>
+
+        <input type="radio" name="motivation_incentive" value="no" id="motivation_incentive-no">
+        <label for="motivation_incentive-no">No</label>
+
+        <button type="button">Next</button>
+
+      </fieldset>
+
+      <h2>Ice Breaker</h2>
+
+      <fieldset id="benefits">
+
+        <legend>Who do you think benefits most from OpenSource software?</legend>
+
+        <input type="radio" name="benefits" value="community" id="benefits-community">
+        <label for="benefits-community">The OpenSource community as a whole</label>
+
+        <input type="radio" name="benefits" value="companies" id="benefits-companies">
+        <label for="benefits-companies">Commercially successful companies built on OpenSource technology</label>
+
+        <button type="button">Next</button>
+
+      </fieldset>
+
+      <h2>Core Questions</h2>
+
+      <fieldset id="compensation">
+
+        <legend>Do you think OpenSource developers should be compensated for the value they create?</legend>
+
+        <input type="radio" name="compensation" value="yes" id="compensation-yes">
+        <label for="compensation-yes">Yes</label>
+
+        <input type="radio" name="compensation" value="no" id="compensation-no">
+        <label for="compensation-no">No</label>
+
+        <button type="button">Next</button>
+
+      </fieldset>
+
+      <fieldset id="sufficient">
+
+        <legend>Do you think OpenSource projects and their maintainers and contributors are currently being sufficiently rewarded?</legend>
+
+        <input type="radio" name="sufficient" value="yes" id="sufficient-yes">
+        <label for="sufficient-yes">Yes</label>
+
+        <input type="radio" name="sufficient" value="no" id="sufficient-no">
+        <label for="sufficient-no">No</label>
+
+        <button type="button">Next</button>
+
+      </fieldset>
+
+      <fieldset id="models">
+
+        <legend>Which of the existing funding models addresses OpenSource funding needs best?</legend>
+        <p>You can select multiple funding models - or none, if you think neither of the models addresses OpenSource funding needs sufficiently.</p>
+
+        <input type="checkbox" name="models-sponsorship" id="models-sponsorship">
+        <label for="models-sponsorship">Sponsorship</label>
+
+        <input type="checkbox" name="models-crowdfunding" id="models-crowdfunding">
+        <label for="models-crowdfunding">Crowdfunding</label>
+
+        <input type="checkbox" name="models-grants" id="models-grants">
+        <label for="models-grants">Grants</label>
+
+        <button type="button">Next</button>
+
+      </fieldset>
+
+      <fieldset id="share">
+
+        <legend>Do you think OpenSource developers should receive a share of the commercial success of products and services that are built on top of their software?</legend>
+
+        <input type="radio" name="share" value="yes" id="share-yes">
+        <label for="share-yes">Yes</label>
+
+        <input type="radio" name="share" value="no" id="share-no">
+        <label for="share-no">No</label>
+
+        <button type="button">Next</button>
+
+      </fieldset>
+
+      <fieldset id="effect">
+
+        <legend>Do you think financial compensation for OpenSource contributors would have a positive effect on the OpenSource community and the quality and long-term maintenance of OpenSource software?</legend>
+
+        <input type="radio" name="effect" value="yes" id="effect-yes">
+        <label for="effect-yes">Yes</label>
+
+        <input type="radio" name="effect" value="no" id="effect-no">
+        <label for="effect-no">No</label>
+
+        <button type="button">Next</button>
+
+      </fieldset>
+
+      <h2>Profile</h2>
+
+      <fieldset>
+
+        <legend>How long have you been working with OpenSource software?</legend>
+
+        <label for="experience">Years of experience</label>
+        <input type="number" name="experience" id="experience">
+
+        <button type="button">Next</button>
+
+      </fieldset>
+
+      <fieldset>
+
+        <legend>How do you use OpenSource software?</legend>
+
+        <input type="checkbox" name="usage-professional" id="usage-professional">
+        <label for="usage-professional">In my professional work</label>
+
+        <input type="checkbox" name="usage-hobby" id="usage-hobby">
+        <label for="usage-hobby">As a hobby or side project</label>
+
+        <button type="button">Next</button>
+
+      </fieldset>
+
+      <fieldset>
+
+        <legend>How frequently do you contribute to OpenSource software on average?</legend>
+
+        <input type="radio" name="frequency" value="high" id="frequency-high">
+        <label for="frequency-high">Multiple times per week</label>
+
+        <input type="radio" name="frequency" value="medium" id="frequency-medium">
+        <label for="frequency-medium">Multiple times per month</label>
+
+        <input type="radio" name="frequency" value="low" id="frequency-low">
+        <label for="frequency-low">Multiple times per year</label>
+
+        <input type="radio" name="frequency" value="very_low" id="frequency-very_low">
+        <label for="frequency-very_low">Less than once per year</label>
+
+        <button type="button">Next</button>
+
+      </fieldset>
+
+      <fieldset>
+
+        <legend>How do you work?</legend>
+
+        <input type="radio" name="employment" value="self" id="employment-self">
+        <label for="employment-self">I'm self-employed</label>
+
+        <input type="radio" name="employment" value="company" id="employment-company">
+        <label for="employment-company">I work for a company</label>
+
+        <input type="radio" name="employment" value="none" id="employment-none">
+        <label for="employment-none">I'm not employed</label>
+
+        <button type="button">Next</button>
+
+      </fieldset>
+
+      <fieldset>
+
+        <legend>Where are you from?</legend>
+
+        <label for="country">Country</label>
+        <select name="country" id="country">
+          <option value="FR">France</option>
+          <option value="DE" selected>Germany</option>
+          <option value="RS">Serbia</option>
+          <option value="ES">Spain</option>
+          <option value="US">United States of America</option>
+        </select>
+
+        <button type="button">Next</button>
+
+      </fieldset>
+
+      <fieldset id="gender">
+
+        <legend>What is your gender?</legend>
+
+        <input type="radio" name="gender" value="male" id="gender-male">
+        <label for="gender-male">Male</label>
+
+        <input type="radio" name="gender" value="female" id="gender-female">
+        <label for="gender-female">Female</label>
+
+        <input type="radio" name="gender" value="non_binary" id="gender-non_binary">
+        <label for="gender-non_binary">Non-Binary/Third Gender</label>
+
+        <input type="radio" name="gender" value="private" id="gender-private">
+        <label for="gender-private">Prefer not to say</label>
+
+        <button type="button">Submit</button>
+
+      </fieldset>
+
+    </form>
+
+  </main>
+
+  <footer>
+    <nav aria-label="footer navigation">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/">Survey</a></li>
+        <li><a href="/">Results</a></li>
+        <li><a href="/">Imprint</a></li>
+        <li><a href="/">Contact</a></li>
+      </ul>
+    </nav>
+  </footer>
 
   <script src="dist/app.bundle.js"></script>
 </body>
