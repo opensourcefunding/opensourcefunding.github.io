@@ -1,16 +1,21 @@
 import pluginNodeResolve from '@rollup/plugin-node-resolve';
 import pluginFileSize from 'rollup-plugin-filesize';
 import { terser as pluginTerser } from 'rollup-plugin-terser';
+import pluginTypescript from 'rollup-plugin-typescript2';
+import typescript from 'typescript';
 import pkg from './package.json';
 
 export default [{
-    input: 'dist/src/app.js',
+    input: 'src/app.ts',
     output: [{
         file: 'dist/app.bundle.js',
         format: 'iife',
     }],
     plugins: [
         pluginNodeResolve(),
+        pluginTypescript({
+            typescript,
+        }),
         pluginTerser(),
         pluginFileSize({
             showMinifiedSize: true,
@@ -19,7 +24,6 @@ export default [{
         }),
     ],
     external: [
-        // ...Object.keys(pkg.dependencies || {}),
         ...Object.keys(pkg.peerDependencies || {}),
     ],
 }];
