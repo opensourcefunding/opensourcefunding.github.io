@@ -5,139 +5,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Open Source Funding</title>
-  <style>
-    :root {
-      --text-color: #333333;
-      --link-color: #666666;
-      --link-color-active: #333333;
-      --background-color: #eeeeee;
-      --background-color-button: #dddddd;
-      --border-color: #dddddd;
-    }
-
-    body {
-      width: 100vw;
-      min-height: 100vh;
-      margin: 0;
-      padding: 0;
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      font-weight: normal;
-      line-height: 1.5;
-      color: var(--text-color);
-      box-sizing: border-box;
-      -webkit-font-smoothing: antialiased;
-      display: flex;
-      flex-flow: column;
-    }
-
-    nav>ul {
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-flow: row nowrap;
-    }
-
-    nav>ul>li {
-      margin: 0;
-      padding: 0;
-      flex: 0 0 auto;
-      list-style: none;
-    }
-
-    nav>ul>li>a {
-      display: block;
-      margin: 0;
-      padding: .5rem;
-      color: var(--link-color);
-      text-decoration: none;
-    }
-
-    nav>ul>li>a:focus,
-    nav>ul>li>a:hover {
-      color: var(--link-color-active);
-      text-decoration: underline;
-    }
-
-    header {
-      flex: 0 0 auto;
-      box-sizing: border-box;
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    main {
-      flex: 1 1 100%;
-      padding: 1.5rem;
-      box-sizing: border-box;
-    }
-
-    footer {
-      flex: 0 0 auto;
-      box-sizing: border-box;
-      background-color: var(--background-color);
-      border-top: 1px solid var(--border-color);
-    }
-
-    footer>nav>ul {
-      justify-content: center;
-    }
-
-    fieldset {
-      display: grid;
-      grid-template-columns: auto 1fr;
-      margin: 0 0 1.5rem 0;
-      padding: 0;
-      border: none;
-    }
-
-    fieldset>legend {
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-      grid-column: 1 / span 2;
-    }
-
-    fieldset>p {
-      margin: 0 0 0.5rem 0;
-      grid-column: 1 / span 2;
-      color: var(--link-color);
-    }
-
-    fieldset>button {
-      grid-column: 1 / span 2;
-      justify-self: start;
-    }
-
-    fieldset>input,
-    fieldset>select,
-    fieldset>textarea {
-      font: inherit;
-      line-height: inherit;
-      vertical-align: middle;
-      justify-self: start;
-    }
-
-    fieldset>label {
-      vertical-align: middle;
-    }
-
-    button {
-      padding: 0.25rem 1rem;
-      font: inherit;
-      color: var(--link-color);
-      line-height: 1.5rem;
-      font-weight: bold;
-      vertical-align: middle;
-      border: none;
-      border-radius: 0.125rem;
-      background-color: var(--background-color-button);
-    }
-  </style>
   <link rel="stylesheet" href="styles.css">
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-16350314-4"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'UA-16350314-4');
   </script>
 </head>
@@ -158,299 +31,242 @@
 
     <h1>Survey</h1>
 
+    <progress max="19" value="10" id="progress"></progress>
+
     <form aria-label="survey" name="survey" id="survey">
 
-      <h2>Intro</h2>
+      <!-- <h2>Intro</h2> -->
 
-      <fieldset id="relation">
+      <radio-group id="relation">
 
-        <legend>What is your relation to OpenSource?</legend>
+        <h2 slot="header">What is your relation to OpenSource?</h2>
 
-        <input id="relation-contributor" type="radio" name="relation" value="contributor">
-        <label for="relation-contributor">Contributor / Maintainer</label>
-
-        <input id="relation-user" type="radio" name="relation" value="consumer">
-        <label for="relation-user">Consumer / User</label>
-
-        <input id="relation-both" type="radio" name="relation" value="both">
-        <label for="relation-both">Both</label>
+        <radio-button name="relation" value="contributor">Contributor</radio-button>
+        <radio-button name="relation" value="user">User</radio-button>
 
         <button type="button">Next</button>
 
-      </fieldset>
+      </radio-group>
 
-      <fieldset id="motivation_contributors">
+      <form-group id="motivation_contributors">
 
-        <legend>What are your main motivations for contributing to OpenSource projects?</legend>
-        <p>You can select multiple options.</p>
+        <h2 slot="header">What are your main motivations for contributing to OpenSource projects?</h2>
+        <p slot="description">You can select multiple options.</p>
 
-        <input type="checkbox" name="motivation_contributors" value="sharing" id="motivation_contributors-sharing">
-        <label for="motivation_contributors-sharing">Giving back the community/ Sharing knowledge/ Creating better
-          software</label>
+        <check-box name="motivation_contributors" value="sharing">Giving back to the community/ Sharing knowledge/
+          Creating
+          better software</check-box>
+        <check-box name="motivation_contributors" value="recognition">Recognition/ Building a portfolio/ Career
+          advancement</check-box>
+        <check-box name="motivation_contributors" value="passion">Self-realisation/ Working on projects you care about/
+          Learn new skills</check-box>
 
-        <input type="checkbox" name="motivation_contributors" value="recognition"
-          id="motivation_contributors-recognition">
-        <label for="motivation_contributors-recognition">Recognition/ Building a portfolio/ Career advancement</label>
-
-        <input type="checkbox" name="motivation_contributors" value="passion" id="motivation_contributors-passion">
-        <label for="motivation_contributors-passion">Self-realisation/ Working on projects you care about</label>
-
-        <label for="motivation_contributors-other">Others</label>
-        <textarea name="motivation_contributors-other" id="motivation_contributors-other"></textarea>
+        <textarea name="motivation_contributors-other" placeholder="Others" aria-label="others"></textarea>
 
         <button type="button">Next</button>
 
-      </fieldset>
+      </form-group>
 
-      <fieldset id="motivation_consumers">
+      <form-group id="motivation_consumers">
 
-        <legend>What are your main motivations for using OpenSource software?</legend>
-        <p>You can select multiple options.</p>
+        <h2 slot="header">What are your main motivations for using OpenSource software?</h2>
+        <p slot="description">You can select multiple options.</p>
 
-        <input type="checkbox" name="motivation_consumers" value="free" id="motivation_consumers-free">
-        <label for="motivation_consumers-free">Free to use</label>
+        <check-box name="motivation_consumers" value="free">Free to use</check-box>
+        <check-box name="motivation_consumers" value="trust">Trustworthy/ Transparent (no proprietary code)</check-box>
+        <check-box name="motivation_consumers" value="independent">Vendor independent</check-box>
 
-        <input type="checkbox" name="motivation_consumers" value="trust" id="motivation_consumers-trust">
-        <label for="motivation_consumers-trust">Trustworthy/ Transparent (no proprietary code)</label>
-
-        <input type="checkbox" name="motivation_consumers" value="independent" id="motivation_consumers-independent">
-        <label for="motivation_consumers-independent">Vendor independent</label>
-
-        <label for="motivation_consumers-other">Others</label>
-        <textarea name="motivation_consumers-other" id="motivation_consumers-other"></textarea>
+        <textarea name="motivation_consumers-other" placeholder="Others" aria-label="others"></textarea>
 
         <button type="button">Next</button>
 
-      </fieldset>
+      </form-group>
 
-      <fieldset id="motivation_incentive">
+      <radio-group id="motivation_incentive">
 
-        <legend>Would financial incentives/rewards have a positive impact on your work on OpenSource projects?</legend>
+        <h2 slot="header">Would financial incentives/rewards have a positive impact on your work on OpenSource projects?
+        </h2>
 
-        <input type="radio" name="motivation_incentive" value="yes" id="motivation_incentive-yes">
-        <label for="motivation_incentive-yes">Yes</label>
-
-        <input type="radio" name="motivation_incentive" value="no" id="motivation_incentive-no">
-        <label for="motivation_incentive-no">No</label>
+        <radio-button name="motivation_incentive" value="yes">Yes</radio-button>
+        <radio-button name="motivation_incentive" value="no">No</radio-button>
 
         <button type="button">Next</button>
 
-      </fieldset>
+      </radio-group>
 
-      <h2>Ice Breaker</h2>
+      <radio-group id="benefits">
 
-      <fieldset id="benefits">
+        <h2 slot="header">Who do you think benefits most from OpenSource software?</h2>
 
-        <legend>Who do you think benefits most from OpenSource software?</legend>
-
-        <input type="radio" name="benefits" value="community" id="benefits-community">
-        <label for="benefits-community">The OpenSource community as a whole</label>
-
-        <input type="radio" name="benefits" value="companies" id="benefits-companies">
-        <label for="benefits-companies">Commercially successful companies built on OpenSource technology</label>
+        <radio-button name="benefits" value="community">The OpenSource community as a whole</radio-button>
+        <radio-button name="benefits" value="companies">Commercially successful companies built on OpenSource technology
+        </radio-button>
 
         <button type="button">Next</button>
 
-      </fieldset>
+      </radio-group>
 
-      <h2>Core Questions</h2>
+      <radio-group id="compensation">
 
-      <fieldset id="compensation">
+        <h2 slot="header">Do you think OpenSource developers should be compensated for the value they create?</h2>
 
-        <legend>Do you think OpenSource developers should be compensated for the value they create?</legend>
-
-        <input type="radio" name="compensation" value="yes" id="compensation-yes">
-        <label for="compensation-yes">Yes</label>
-
-        <input type="radio" name="compensation" value="no" id="compensation-no">
-        <label for="compensation-no">No</label>
+        <radio-button name="compensation" value="yes">Yes</radio-button>
+        <radio-button name="compensation" value="no">No</radio-button>
 
         <button type="button">Next</button>
 
-      </fieldset>
+      </radio-group>
 
-      <fieldset id="what_is_fair_compensation">
+      <form-group id="what_is_fair_compensation">
 
-        <legend>What do you think is a fair compensation for OpenSource work?</legend>
+        <h2 slot="header">What do you think is a fair compensation for OpenSource work?</h2>
+        <p slot="description">You can select multiple options.</p>
 
-        <input type="checkbox" name="what_is_fair_compensation" value="reputation" id="what_is_fair_compensation-reputation">
-        <label for="what_is_fair_compensation-reputation">Reputation</label>
+        <check-box name="what_is_fair_compensation" value="experience">The experience itself</check-box>
+        <check-box name="what_is_fair_compensation" value="reputation">Reputation</check-box>
+        <check-box name="what_is_fair_compensation" value="financial">Financial</check-box>
 
-        <input type="checkbox" name="what_is_fair_compensation" value="financial" id="what_is_fair_compensation-financial">
-        <label for="what_is_fair_compensation-financial">Finacial</label>
-
-        <label for="what_is_fair_compensation-other">Others</label>
-        <textarea name="what_is_fair_compensation-other" id="what_is_fair_compensation-other"></textarea>
+        <textarea name="what_is_fair_compensation-other" placeholder="Others" aria-label="others"></textarea>
 
         <button type="button">Next</button>
 
-      </fieldset>
+      </form-group>
 
-      <fieldset id="measuring_fair_compensation">
+      <form-group id="measuring_fair_compensation">
 
-        <legend>Which criteria would you include in determining a fair compensation for OpenSource work?</legend>
+        <h2 slot="header">Which criteria would you include in determining a fair compensation for OpenSource work?</h2>
+        <p slot="description">You can select multiple options.</p>
 
-        <input type="checkbox" name="measuring_fair_compensation" value="time" id="measuring_fair_compensation-time">
-        <label for="measuring_fair_compensation-time">The amount of time/work that went into the OpenSource project</label>
+        <check-box name="measuring_fair_compensation" value="time">The amount of time/work that went into the OpenSource
+          project</check-box>
+        <check-box name="measuring_fair_compensation" value="usage">The popularity/usage of the OpenSource project
+        </check-box>
+        <check-box name="measuring_fair_compensation" value="value">The value/benefit the OpenSource project adds
+        </check-box>
 
-        <input type="checkbox" name="measuring_fair_compensation" value="usage" id="measuring_fair_compensation-usage">
-        <label for="measuring_fair_compensation-usage">The popularity/usage of the OpenSource project</label>
-
-        <label for="measuring_fair_compensation-other">Others</label>
-        <textarea name="measuring_fair_compensation-other" id="measuring_fair_compensation-other"></textarea>
-
-        <button type="button">Next</button>
-
-      </fieldset>
-
-      <fieldset id="charging_fair_compensation">
-
-        <legend>Who do you think should be responsible for compensating OpenSource work?</legend>
-
-        <input type="checkbox" name="charging_fair_compensation" value="everybody" id="charging_fair_compensation-everybody">
-        <label for="charging_fair_compensation-everybody">Every user of OpenSource software</label>
-
-        <input type="checkbox" name="charging_fair_compensation" value="commercial" id="charging_fair_compensation-commercial">
-        <label for="charging_fair_compensation-commercial">Commercial users of OpenSource software</label>
-
-        <label for="charging_fair_compensation-other">Others</label>
-        <textarea name="charging_fair_compensation-other" id="charging_fair_compensation-other"></textarea>
+        <textarea name="measuring_fair_compensation-other" placeholder="Others" aria-label="others"></textarea>
 
         <button type="button">Next</button>
 
-      </fieldset>
+      </form-group>
 
-      <fieldset id="sufficient">
+      <form-group id="charging_fair_compensation">
 
-        <legend>Do you think OpenSource projects and their maintainers and contributors are currently being sufficiently
-          rewarded?</legend>
+        <h2 slot="header">Who do you think should be responsible for compensating OpenSource work?</h2>
+        <p slot="description">You can select multiple options.</p>
 
-        <input type="radio" name="sufficient" value="yes" id="sufficient-yes">
-        <label for="sufficient-yes">Yes</label>
+        <check-box name="charging_fair_compensation" value="everybody">Every user of OpenSource software</check-box>
+        <check-box name="charging_fair_compensation" value="commercial">Commercial users of OpenSource software
+        </check-box>
 
-        <input type="radio" name="sufficient" value="no" id="sufficient-no">
-        <label for="sufficient-no">No</label>
-
-        <button type="button">Next</button>
-
-      </fieldset>
-
-      <fieldset id="models">
-
-        <legend>Which of the existing funding models addresses OpenSource funding needs best?</legend>
-        <p>You can select multiple funding models - or none, if you think neither of the models addresses OpenSource
-          funding needs sufficiently.</p>
-
-        <input type="checkbox" name="models" value="sponsorship" id="models-sponsorship">
-        <label for="models-sponsorship">Sponsorship</label>
-
-        <input type="checkbox" name="models" value="crowdfunding" id="models-crowdfunding">
-        <label for="models-crowdfunding">Crowdfunding</label>
-
-        <input type="checkbox" name="models" value="grants" id="models-grants">
-        <label for="models-grants">Grants</label>
+        <textarea name="charging_fair_compensation-other" placeholder="Others" aria-label="others"></textarea>
 
         <button type="button">Next</button>
 
-      </fieldset>
+      </form-group>
 
-      <fieldset id="share">
+      <radio-group id="sufficient">
 
-        <legend>Do you think OpenSource developers should receive a share of the commercial success of products and
-          services that are built on top of their software?</legend>
+        <h2 slot="header">Do you think OpenSource projects and their maintainers and contributors are currently being
+          sufficiently compensated?</h2>
 
-        <input type="radio" name="share" value="yes" id="share-yes">
-        <label for="share-yes">Yes</label>
-
-        <input type="radio" name="share" value="no" id="share-no">
-        <label for="share-no">No</label>
+        <radio-button name="sufficient" value="yes">Yes</radio-button>
+        <radio-button name="sufficient" value="no">No</radio-button>
 
         <button type="button">Next</button>
 
-      </fieldset>
+      </radio-group>
 
-      <fieldset id="effect">
+      <form-group id="models">
 
-        <legend>Do you think financial compensation for OpenSource contributors would have a positive effect on the
-          OpenSource community and the quality and long-term maintenance of OpenSource software?</legend>
+        <h2 slot="header">Which of the existing funding models addresses OpenSource funding needs best?</h2>
+        <p slot="description">You can select multiple funding models - or none if you think neither of the models
+          addresses OpenSource funding needs sufficiently.</p>
 
-        <input type="radio" name="effect" value="yes" id="effect-yes">
-        <label for="effect-yes">Yes</label>
-
-        <input type="radio" name="effect" value="no" id="effect-no">
-        <label for="effect-no">No</label>
+        <check-box name="models" value="donations">Donations</check-box>
+        <check-box name="models" value="crowdfunding">Crowdfunding</check-box>
+        <check-box name="models" value="sponsorships">Sponsorships</check-box>
+        <check-box name="models" value="grants">Grants</check-box>
 
         <button type="button">Next</button>
 
-      </fieldset>
+      </form-group>
 
-      <h2>Profile</h2>
+      <radio-group id="share">
 
-      <fieldset>
+        <h2 slot="header">Do you think OpenSource developers should receive a share of the commercial success of
+          products and services that are built on top of their software?</h2>
 
-        <legend>How long have you been working with OpenSource software?</legend>
+        <radio-button name="share" value="yes">Yes</radio-button>
+        <radio-button name="share" value="no">No</radio-button>
+
+        <button type="button">Next</button>
+
+      </radio-group>
+
+      <radio-group id="effect">
+
+        <h2 slot="header">Do you think financial compensation for OpenSource contributors would have a positive effect
+          on the OpenSource community and the quality and long-term maintenance of OpenSource software?</h2>
+
+        <radio-button name="effect" value="yes">Yes</radio-button>
+        <radio-button name="effect" value="no">No</radio-button>
+
+        <button type="button">Next</button>
+
+      </radio-group>
+
+      <form-group>
+
+        <h2 slot="header">How long have you been working with OpenSource software?</h2>
 
         <label for="experience">Years of experience</label>
-        <input type="number" name="experience" id="experience">
+        <input type="number" name="experience" id="experience" placeholder="Number of years, e.g. 5">
 
         <button type="button">Next</button>
 
-      </fieldset>
+      </form-group>
 
-      <fieldset>
+      <form-group>
 
-        <legend>How do you use OpenSource software?</legend>
+        <h2 slot="header">How do you use OpenSource software?</h2>
+        <p slot="description">You can select multiple options.</p>
 
-        <input type="checkbox" name="usage" value="professional" id="usage-professional">
-        <label for="usage-professional">In my professional work</label>
-
-        <input type="checkbox" name="usage" value="hobby" id="usage-hobby">
-        <label for="usage-hobby">As a hobby or side project</label>
+        <check-box name="usage" value="professional">In my professional work</check-box>
+        <check-box name="usage" value="hobby">As a hobby or side project</check-box>
 
         <button type="button">Next</button>
 
-      </fieldset>
+      </form-group>
 
-      <fieldset>
+      <radio-group>
 
-        <legend>How frequently do you contribute to OpenSource software on average?</legend>
+        <h2 slot="header">How frequently do you contribute to OpenSource software on average?</h2>
 
-        <input type="radio" name="frequency" value="high" id="frequency-high">
-        <label for="frequency-high">Multiple times per week</label>
-
-        <input type="radio" name="frequency" value="medium" id="frequency-medium">
-        <label for="frequency-medium">Multiple times per month</label>
-
-        <input type="radio" name="frequency" value="low" id="frequency-low">
-        <label for="frequency-low">Multiple times per year</label>
-
-        <input type="radio" name="frequency" value="very_low" id="frequency-very_low">
-        <label for="frequency-very_low">Less than once per year</label>
+        <radio-button name="frequency" value="high">Multiple times per week</radio-button>
+        <radio-button name="frequency" value="medium">Multiple times per month</radio-button>
+        <radio-button name="frequency" value="low">Multiple times per year</radio-button>
+        <radio-button name="frequency" value="very_low">Less than once per year</radio-button>
 
         <button type="button">Next</button>
 
-      </fieldset>
+      </radio-group>
 
-      <fieldset>
+      <radio-group>
 
-        <legend>How do you work?</legend>
+        <h2 slot="header">How do you work?</h2>
 
-        <input type="radio" name="employment" value="self" id="employment-self">
-        <label for="employment-self">I'm self-employed</label>
-
-        <input type="radio" name="employment" value="company" id="employment-company">
-        <label for="employment-company">I work for a company</label>
-
-        <input type="radio" name="employment" value="none" id="employment-none">
-        <label for="employment-none">I'm not employed</label>
+        <radio-button name="employment" value="self">I'm self-employed</radio-button>
+        <radio-button name="employment" value="company">I work for a company</radio-button>
+        <radio-button name="employment" value="none">I'm not employed</radio-button>
 
         <button type="button">Next</button>
 
-      </fieldset>
+      </radio-group>
 
-      <fieldset>
+      <form-group>
 
-        <legend>Where are you from?</legend>
+        <h2 slot="header">Where are you from?</h2>
 
         <label for="country">Country</label>
         <select name="country" id="country">
@@ -463,27 +279,20 @@
 
         <button type="button">Next</button>
 
-      </fieldset>
+      </form-group>
 
-      <fieldset id="gender">
+      <radio-group id="gender">
 
-        <legend>What is your gender?</legend>
+        <h2 slot="header">What is your gender?</h2>
 
-        <input type="radio" name="gender" value="male" id="gender-male">
-        <label for="gender-male">Male</label>
-
-        <input type="radio" name="gender" value="female" id="gender-female">
-        <label for="gender-female">Female</label>
-
-        <input type="radio" name="gender" value="non_binary" id="gender-non_binary">
-        <label for="gender-non_binary">Non-Binary/Third Gender</label>
-
-        <input type="radio" name="gender" value="private" id="gender-private">
-        <label for="gender-private">Prefer not to say</label>
+        <radio-button name="gender" value="male">Male</radio-button>
+        <radio-button name="gender" value="female">Female</radio-button>
+        <radio-button name="gender" value="non_binary">Non-Binary/Third Gender</radio-button>
+        <radio-button name="gender" value="private">Prefer not to say</radio-button>
 
         <button type="button" id="submit">Submit</button>
 
-      </fieldset>
+      </radio-group>
 
     </form>
 

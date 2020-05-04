@@ -1,4 +1,7 @@
+import './elements/check-box';
 import './elements/radio-button';
+import './elements/form-group';
+import './elements/radio-group';
 
 async function bootstrap () {
 

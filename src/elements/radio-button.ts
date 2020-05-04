@@ -1,40 +1,62 @@
-const TEMPLATE = document.createElement('template');
+import { CheckBox } from './check-box';
 
-TEMPLATE.innerHTML = `<div part="check"></div>`;
+let STYLE: CSSStyleSheet | HTMLStyleElement;
 
-const STYLE = new CSSStyleSheet();
-
-STYLE.replaceSync(`
+const STYLE_CONTENT = `
 :host {
-    display: inline-flex;
+    display: inline-grid;
+    grid-template-columns: auto 1fr;
+    column-gap: .5rem;
+    align-items: center;
+    justify-items: stretch;
+    font: inherit;
+}
+:host input {
+    display: none;
+}
+:host [part="control"] {
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
     height: 1rem;
     width: 1rem;
-    font: inherit;
-    overflow: hidden;
     border: 1px solid var(--border-color, #ccc);
     border-radius: 50%;
     box-sizing: border-box;
 }
-:host > [part="check"] {
+:host [part="check"] {
     flex: 1 1 auto;
     margin: 1px;
     border-radius: 50%;
 }
-:host([aria-checked="true"]) > [part="check"] {
+:host([aria-checked="true"]) [part="check"] {
     background-color: var(--background-color-active, dodgerblue);
+}
+:host([aria-disabled=true]) {
+    opacity: .5;
 }
 :host(:focus) {
     outline: none;
     box-shadow: 0 0 0 2px var(--outline-color, dodgerblue);
 }
-`);
+`;
 
-export class RadioButton extends HTMLElement {
+try {
 
-    static get observedAttributes () {
+    STYLE = new CSSStyleSheet();
+    STYLE.replaceSync(STYLE_CONTENT);
 
-        return ['aria-checked'];
-    }
+} catch (error) {
+
+    STYLE = document.createElement('style');
+    STYLE.innerText = STYLE_CONTENT;
+}
+
+let COUNTER = 0;
+
+export class RadioButton extends CheckBox {
+
+    static style = STYLE;
 
     get checked (): boolean {
 
@@ -45,53 +67,58 @@ export class RadioButton extends HTMLElement {
 
         if (checked === this.checked) return;
 
-        this.setAttribute('aria-checked', checked.toString());
-    }
-
-    constructor () {
-
-        super();
-
-        this.attachShadow({ mode: 'open' });
-
-        this.shadowRoot!.appendChild(TEMPLATE.content.cloneNode(true));
-        this.shadowRoot!.adoptedStyleSheets = [STYLE];
+        this.input.checked = checked;
+        this.setAttribute('aria-checked', `${ checked }`);
     }
 
     connectedCallback () {
 
-        this.setAttribute('role', 'radio');
-        this.setAttribute('aria-checked', this.checked.toString());
-        this.setAttribute('tabindex', '0');
+        super.connectedCallback();
 
-        this.addEventListener('click', this.handleClick.bind(this));
-        this.addEventListener('keydown', this.handleKeydown.bind(this));
+        this.setAttribute('role', 'radio');
     }
 
-    disconnectedCallback () { }
+    protected getId (): string {
 
-    attributeChangedCallback (name: string, oldValue: string, newValue: string) {
+        return this.id || `radio-button-${ COUNTER++ }`;
+    }
 
-        if (name === 'aria-checked') {
+    protected createHiddenInput (): HTMLInputElement {
 
-            if (oldValue === newValue) return;
+        const input = document.createElement('input');
 
-            this.checked = newValue === 'true';
-        }
+        input.type = 'radio';
+        input.checked = this.getAttribute('aria-checked') === 'true';
+        input.disabled = this.getAttribute('aria-disabled') === 'true';
+
+        input.setAttribute('aria-hidden', 'true');
+        input.setAttribute('style', 'display: none;');
+
+        this.prepend(input);
+
+        return input;
     }
 
     protected handleClick (event: MouseEvent) {
 
-        this.checked = !this.checked;
+        if (this.disabled || this.checked) return;
+
+        this.checked = true;
+
+        this.emitChange();
     }
 
-    protected handleKeydown (event: KeyboardEvent) {
+    protected handleKeypress (event: KeyboardEvent) {
 
         if (event.key === 'Enter' || event.key === ' ') {
 
             event.preventDefault();
 
-            this.checked = !this.checked;
+            if (this.disabled || this.checked) return;
+
+            this.checked = true;
+
+            this.emitChange();
         }
     }
 }
