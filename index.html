@@ -13,6 +13,14 @@
     gtag('js', new Date());
     gtag('config', 'UA-16350314-4');
   </script>
+  <script>
+    if (this.customElements) {
+      try { customElements.define('built-in', document.createElement('p').constructor, { 'extends': 'p' }); }
+      catch (error) { document.write('<script src="https://unpkg.com/@ungap/custom-elements-builtin"><\x2fscript>'); }
+    } else {
+      document.write('<script src="https://unpkg.com/document-register-element"><\x2fscript>');
+    }
+  </script>
 </head>
 
 <body>
@@ -31,268 +39,195 @@
 
     <h1>Survey</h1>
 
-    <progress max="19" value="10" id="progress"></progress>
-
-    <form aria-label="survey" name="survey" id="survey">
-
-      <!-- <h2>Intro</h2> -->
-
-      <radio-group id="relation">
-
-        <h2 slot="header">What is your relation to OpenSource?</h2>
-
-        <radio-button name="relation" value="contributor">Contributor</radio-button>
-        <radio-button name="relation" value="user">User</radio-button>
-
-        <button type="button">Next</button>
-
-      </radio-group>
-
-      <form-group id="motivation_contributors">
-
-        <h2 slot="header">What are your main motivations for contributing to OpenSource projects?</h2>
-        <p slot="description">You can select multiple options.</p>
-
-        <check-box name="motivation_contributors" value="sharing">Giving back to the community/ Sharing knowledge/
-          Creating
-          better software</check-box>
-        <check-box name="motivation_contributors" value="recognition">Recognition/ Building a portfolio/ Career
-          advancement</check-box>
-        <check-box name="motivation_contributors" value="passion">Self-realisation/ Working on projects you care about/
-          Learn new skills</check-box>
-
-        <textarea name="motivation_contributors-other" placeholder="Others" aria-label="others"></textarea>
-
-        <button type="button">Next</button>
-
-      </form-group>
-
-      <form-group id="motivation_consumers">
-
-        <h2 slot="header">What are your main motivations for using OpenSource software?</h2>
-        <p slot="description">You can select multiple options.</p>
-
-        <check-box name="motivation_consumers" value="free">Free to use</check-box>
-        <check-box name="motivation_consumers" value="trust">Trustworthy/ Transparent (no proprietary code)</check-box>
-        <check-box name="motivation_consumers" value="independent">Vendor independent</check-box>
-
-        <textarea name="motivation_consumers-other" placeholder="Others" aria-label="others"></textarea>
-
-        <button type="button">Next</button>
-
-      </form-group>
-
-      <radio-group id="motivation_incentive">
-
-        <h2 slot="header">Would financial incentives/rewards have a positive impact on your work on OpenSource projects?
-        </h2>
-
-        <radio-button name="motivation_incentive" value="yes">Yes</radio-button>
-        <radio-button name="motivation_incentive" value="no">No</radio-button>
-
-        <button type="button">Next</button>
-
-      </radio-group>
-
-      <radio-group id="benefits">
-
-        <h2 slot="header">Who do you think benefits most from OpenSource software?</h2>
-
-        <radio-button name="benefits" value="community">The OpenSource community as a whole</radio-button>
-        <radio-button name="benefits" value="companies">Commercially successful companies built on OpenSource technology
-        </radio-button>
-
-        <button type="button">Next</button>
-
-      </radio-group>
-
-      <radio-group id="compensation">
-
-        <h2 slot="header">Do you think OpenSource developers should be compensated for the value they create?</h2>
-
-        <radio-button name="compensation" value="yes">Yes</radio-button>
-        <radio-button name="compensation" value="no">No</radio-button>
-
-        <button type="button">Next</button>
-
-      </radio-group>
-
-      <form-group id="what_is_fair_compensation">
-
-        <h2 slot="header">What do you think is a fair compensation for OpenSource work?</h2>
-        <p slot="description">You can select multiple options.</p>
-
-        <check-box name="what_is_fair_compensation" value="experience">The experience itself</check-box>
-        <check-box name="what_is_fair_compensation" value="reputation">Reputation</check-box>
-        <check-box name="what_is_fair_compensation" value="financial">Financial</check-box>
-
-        <textarea name="what_is_fair_compensation-other" placeholder="Others" aria-label="others"></textarea>
-
-        <button type="button">Next</button>
-
-      </form-group>
-
-      <form-group id="measuring_fair_compensation">
-
-        <h2 slot="header">Which criteria would you include in determining a fair compensation for OpenSource work?</h2>
-        <p slot="description">You can select multiple options.</p>
-
-        <check-box name="measuring_fair_compensation" value="time">The amount of time/work that went into the OpenSource
-          project</check-box>
-        <check-box name="measuring_fair_compensation" value="usage">The popularity/usage of the OpenSource project
-        </check-box>
-        <check-box name="measuring_fair_compensation" value="value">The value/benefit the OpenSource project adds
-        </check-box>
-
-        <textarea name="measuring_fair_compensation-other" placeholder="Others" aria-label="others"></textarea>
-
-        <button type="button">Next</button>
-
-      </form-group>
-
-      <form-group id="charging_fair_compensation">
-
-        <h2 slot="header">Who do you think should be responsible for compensating OpenSource work?</h2>
-        <p slot="description">You can select multiple options.</p>
-
-        <check-box name="charging_fair_compensation" value="everybody">Every user of OpenSource software</check-box>
-        <check-box name="charging_fair_compensation" value="commercial">Commercial users of OpenSource software
-        </check-box>
-
-        <textarea name="charging_fair_compensation-other" placeholder="Others" aria-label="others"></textarea>
-
-        <button type="button">Next</button>
-
-      </form-group>
-
-      <radio-group id="sufficient">
-
-        <h2 slot="header">Do you think OpenSource projects and their maintainers and contributors are currently being
-          sufficiently compensated?</h2>
-
-        <radio-button name="sufficient" value="yes">Yes</radio-button>
-        <radio-button name="sufficient" value="no">No</radio-button>
-
-        <button type="button">Next</button>
-
-      </radio-group>
-
-      <form-group id="models">
-
-        <h2 slot="header">Which of the existing funding models addresses OpenSource funding needs best?</h2>
-        <p slot="description">You can select multiple funding models - or none if you think neither of the models
-          addresses OpenSource funding needs sufficiently.</p>
-
-        <check-box name="models" value="donations">Donations</check-box>
-        <check-box name="models" value="crowdfunding">Crowdfunding</check-box>
-        <check-box name="models" value="sponsorships">Sponsorships</check-box>
-        <check-box name="models" value="grants">Grants</check-box>
-
-        <button type="button">Next</button>
-
-      </form-group>
-
-      <radio-group id="share">
-
-        <h2 slot="header">Do you think OpenSource developers should receive a share of the commercial success of
-          products and services that are built on top of their software?</h2>
-
-        <radio-button name="share" value="yes">Yes</radio-button>
-        <radio-button name="share" value="no">No</radio-button>
-
-        <button type="button">Next</button>
-
-      </radio-group>
-
-      <radio-group id="effect">
-
-        <h2 slot="header">Do you think financial compensation for OpenSource contributors would have a positive effect
-          on the OpenSource community and the quality and long-term maintenance of OpenSource software?</h2>
-
-        <radio-button name="effect" value="yes">Yes</radio-button>
-        <radio-button name="effect" value="no">No</radio-button>
-
-        <button type="button">Next</button>
-
-      </radio-group>
-
-      <form-group>
-
-        <h2 slot="header">How long have you been working with OpenSource software?</h2>
-
-        <label for="experience">Years of experience</label>
-        <input type="number" name="experience" id="experience" placeholder="Number of years, e.g. 5">
-
-        <button type="button">Next</button>
-
-      </form-group>
-
-      <form-group>
-
-        <h2 slot="header">How do you use OpenSource software?</h2>
-        <p slot="description">You can select multiple options.</p>
-
-        <check-box name="usage" value="professional">In my professional work</check-box>
-        <check-box name="usage" value="hobby">As a hobby or side project</check-box>
-
-        <button type="button">Next</button>
-
-      </form-group>
-
-      <radio-group>
-
-        <h2 slot="header">How frequently do you contribute to OpenSource software on average?</h2>
-
-        <radio-button name="frequency" value="high">Multiple times per week</radio-button>
-        <radio-button name="frequency" value="medium">Multiple times per month</radio-button>
-        <radio-button name="frequency" value="low">Multiple times per year</radio-button>
-        <radio-button name="frequency" value="very_low">Less than once per year</radio-button>
-
-        <button type="button">Next</button>
-
-      </radio-group>
-
-      <radio-group>
-
-        <h2 slot="header">How do you work?</h2>
-
-        <radio-button name="employment" value="self">I'm self-employed</radio-button>
-        <radio-button name="employment" value="company">I work for a company</radio-button>
-        <radio-button name="employment" value="none">I'm not employed</radio-button>
-
-        <button type="button">Next</button>
-
-      </radio-group>
-
-      <form-group>
-
-        <h2 slot="header">Where are you from?</h2>
-
-        <label for="country">Country</label>
-        <select name="country" id="country">
-          <option value="FR">France</option>
-          <option value="DE" selected>Germany</option>
-          <option value="RS">Serbia</option>
-          <option value="ES">Spain</option>
-          <option value="US">United States of America</option>
-        </select>
-
-        <button type="button">Next</button>
-
-      </form-group>
-
-      <radio-group id="gender">
-
-        <h2 slot="header">What is your gender?</h2>
-
-        <radio-button name="gender" value="male">Male</radio-button>
-        <radio-button name="gender" value="female">Female</radio-button>
-        <radio-button name="gender" value="non_binary">Non-Binary/Third Gender</radio-button>
-        <radio-button name="gender" value="private">Prefer not to say</radio-button>
-
-        <button type="button" id="submit">Submit</button>
-
-      </radio-group>
+    <form is="survey-form" aria-label="survey" name="survey" id="survey">
+
+      <survey-question name="benefits" required="true">
+        <radio-group id="benefits">
+          <h2 slot="header">Who do you think benefits most from OpenSource software?</h2>
+          <radio-button name="benefits" value="community">The OpenSource community as a whole</radio-button>
+          <radio-button name="benefits" value="companies">Commercially successful companies built on OpenSource
+            technology</radio-button>
+        </radio-group>
+      </survey-question>
+
+      <survey-question name="relation" required="true">
+        <radio-group id="relation">
+          <h2 slot="header">What is your role in OpenSource?</h2>
+          <radio-button name="relation" value="contributor">I'm a contributor</radio-button>
+          <radio-button name="relation" value="user">I'm a user</radio-button>
+        </radio-group>
+      </survey-question>
+
+      <survey-question name="motivation_contributors" required="true">
+        <form-group id="motivation_contributors">
+          <h2 slot="header">What are your main motivations for contributing to OpenSource projects?</h2>
+          <p slot="description">You can select multiple options.</p>
+          <check-box name="motivation_contributors" value="sharing">Giving back to the community/ Sharing knowledge/
+            Creating better software</check-box>
+          <check-box name="motivation_contributors" value="recognition">Recognition/ Building a portfolio/ Career
+            advancement</check-box>
+          <check-box name="motivation_contributors" value="passion">Self-realisation/ Working on projects you care
+            about/ Learn new skills</check-box>
+          <textarea name="motivation_contributors-other" placeholder="Others" aria-label="others"></textarea>
+        </form-group>
+      </survey-question>
+
+      <survey-question name="motivation_consumers" required="true">
+        <form-group id="motivation_consumers">
+          <h2 slot="header">What are your main motivations for using OpenSource software?</h2>
+          <p slot="description">You can select multiple options.</p>
+          <check-box name="motivation_consumers" value="free">Free to use</check-box>
+          <check-box name="motivation_consumers" value="trust">Trustworthy/ Transparent (no proprietary code)
+          </check-box>
+          <check-box name="motivation_consumers" value="independent">Vendor independent</check-box>
+          <textarea name="motivation_consumers-other" placeholder="Others" aria-label="others"></textarea>
+        </form-group>
+      </survey-question>
+
+      <survey-question name="compensation" required="true">
+        <radio-group id="compensation">
+          <h2 slot="header">Do you think OpenSource developers should be compensated for the value they create?</h2>
+          <radio-button name="compensation" value="yes">Yes</radio-button>
+          <radio-button name="compensation" value="no">No</radio-button>
+        </radio-group>
+      </survey-question>
+
+      <survey-question name="what_is_fair_compensation" required="true">
+        <form-group id="what_is_fair_compensation">
+          <h2 slot="header">What do you think is a fair compensation for OpenSource work?</h2>
+          <p slot="description">You can select multiple options.</p>
+          <check-box name="what_is_fair_compensation" value="experience">The experience itself</check-box>
+          <check-box name="what_is_fair_compensation" value="reputation">Reputation</check-box>
+          <check-box name="what_is_fair_compensation" value="financial">Financial</check-box>
+          <textarea name="what_is_fair_compensation-other" placeholder="Others" aria-label="others"></textarea>
+        </form-group>
+      </survey-question>
+
+      <survey-question name="measuring_fair_compensation" required="true">
+        <form-group id="measuring_fair_compensation">
+          <h2 slot="header">Which criteria would you include in determining a fair compensation for OpenSource work?
+          </h2>
+          <p slot="description">You can select multiple options.</p>
+          <check-box name="measuring_fair_compensation" value="time">The amount of time/work that went into the
+            OpenSource project</check-box>
+          <check-box name="measuring_fair_compensation" value="usage">The popularity/usage of the OpenSource project
+          </check-box>
+          <check-box name="measuring_fair_compensation" value="value">The value/benefit the OpenSource project adds
+          </check-box>
+          <textarea name="measuring_fair_compensation-other" placeholder="Others" aria-label="others"></textarea>
+        </form-group>
+      </survey-question>
+
+      <survey-question name="charging_fair_compensation" required="true">
+        <form-group id="charging_fair_compensation">
+          <h2 slot="header">Who do you think should be responsible for compensating OpenSource work?</h2>
+          <p slot="description">You can select multiple options.</p>
+          <check-box name="charging_fair_compensation" value="everybody">Every user of OpenSource software</check-box>
+          <check-box name="charging_fair_compensation" value="commercial">Commercial users of OpenSource software
+          </check-box>
+          <textarea name="charging_fair_compensation-other" placeholder="Others" aria-label="others"></textarea>
+        </form-group>
+      </survey-question>
+
+      <survey-question name="sufficient" required="true">
+        <radio-group id="sufficient">
+          <h2 slot="header">Do you think OpenSource projects and their maintainers and contributors are currently being
+            sufficiently compensated?</h2>
+          <radio-button name="sufficient" value="yes">Yes</radio-button>
+          <radio-button name="sufficient" value="no">No</radio-button>
+        </radio-group>
+      </survey-question>
+
+      <survey-question name="models">
+        <form-group id="models">
+          <h2 slot="header">Which of the existing funding models addresses OpenSource funding needs best?</h2>
+          <p slot="description">You can select multiple funding models - or none if you think neither of the models
+            addresses OpenSource funding needs sufficiently.</p>
+          <check-box name="models" value="donations">Donations</check-box>
+          <check-box name="models" value="crowdfunding">Crowdfunding</check-box>
+          <check-box name="models" value="sponsorships">Sponsorships</check-box>
+          <check-box name="models" value="grants">Grants</check-box>
+          <textarea name="models-other" placeholder="Others" aria-label="others"></textarea>
+        </form-group>
+      </survey-question>
+
+      <survey-question name="share" required="true">
+        <radio-group id="share">
+          <h2 slot="header">Do you think OpenSource developers should receive a share of the commercial success of
+            products and services that are built on top of their software?</h2>
+          <radio-button name="share" value="yes">Yes</radio-button>
+          <radio-button name="share" value="no">No</radio-button>
+        </radio-group>
+      </survey-question>
+
+      <survey-question name="effect" required="true">
+        <radio-group id="effect">
+          <h2 slot="header">Do you think financial compensation for OpenSource contributors would have a positive effect
+            on the OpenSource community and the quality and long-term maintenance of OpenSource software?</h2>
+          <radio-button name="effect" value="yes">Yes</radio-button>
+          <radio-button name="effect" value="no">No</radio-button>
+        </radio-group>
+      </survey-question>
+
+      <survey-question name="experience" required="true">
+        <form-group>
+          <h2 slot="header">How long have you been working with OpenSource software?</h2>
+          <label for="experience">Years of experience</label>
+          <input type="number" name="experience" id="experience" placeholder="Number of years, e.g. 5">
+        </form-group>
+      </survey-question>
+
+      <survey-question name="usage" required="true">
+        <form-group>
+          <h2 slot="header">How do you use OpenSource software?</h2>
+          <p slot="description">You can select multiple options.</p>
+          <check-box name="usage" value="professional">In my professional work</check-box>
+          <check-box name="usage" value="hobby">As a hobby or side project</check-box>
+        </form-group>
+      </survey-question>
+
+      <survey-question name="frequency" required="true">
+        <radio-group>
+          <h2 slot="header">How frequently do you contribute to OpenSource software on average?</h2>
+          <radio-button name="frequency" value="high">Multiple times per week</radio-button>
+          <radio-button name="frequency" value="medium">Multiple times per month</radio-button>
+          <radio-button name="frequency" value="low">Multiple times per year</radio-button>
+          <radio-button name="frequency" value="very_low">Less than once per year</radio-button>
+        </radio-group>
+      </survey-question>
+
+      <survey-question name="employment" required="true">
+        <radio-group>
+          <h2 slot="header">How do you work?</h2>
+          <radio-button name="employment" value="self">I'm self-employed</radio-button>
+          <radio-button name="employment" value="company">I work for a company</radio-button>
+          <radio-button name="employment" value="none">I'm not employed</radio-button>
+        </radio-group>
+      </survey-question>
+
+      <survey-question name="country" required="true">
+        <form-group>
+          <h2 slot="header">Where are you from?</h2>
+          <label for="country">Country</label>
+          <select name="country" id="country">
+            <option value="FR">France</option>
+            <option value="DE" selected>Germany</option>
+            <option value="RS">Serbia</option>
+            <option value="ES">Spain</option>
+            <option value="US">United States of America</option>
+          </select>
+        </form-group>
+      </survey-question>
+
+      <survey-question name="gender" required="true">
+        <radio-group id="gender">
+          <h2 slot="header">What is your gender?</h2>
+          <radio-button name="gender" value="male">Male</radio-button>
+          <radio-button name="gender" value="female">Female</radio-button>
+          <radio-button name="gender" value="non_binary">Non-Binary/Third Gender</radio-button>
+          <radio-button name="gender" value="private">Prefer not to say</radio-button>
+        </radio-group>
+      </survey-question>
 
     </form>
 

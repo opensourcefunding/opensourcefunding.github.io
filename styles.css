@@ -4,6 +4,7 @@
     --link-color-active: #333333;
     --background-color: #eeeeee;
     --background-color-button: #dddddd;
+    --background-color-button-active: #cccccc;
     --border-color: #dddddd;
 }
 
@@ -79,7 +80,33 @@ footer>nav>ul {
 /* form */
 
 form {
+    width: 100%;
     max-width: 40rem;
+    display: grid;
+    grid-template-areas:
+        "progress progress"
+        "question question"
+        "previous next";
+}
+
+form>progress {
+    grid-area: progress;
+    justify-self: center;
+}
+
+form>button.previous {
+    grid-area: previous;
+    justify-self: start;
+}
+
+form>button.next {
+    grid-area: next;
+    justify-self: end;
+}
+
+survey-question {
+    grid-area: question;
+    display: none;
 }
 
 input,
@@ -90,6 +117,7 @@ textarea {
     box-sizing: border-box;
     border: 1px solid var(--border-color);
     border-radius: 0.25rem;
+    background-color: var(--background-color);
 }
 
 input[type=text],
@@ -118,6 +146,14 @@ button {
     border: none;
     border-radius: 0.125rem;
     background-color: var(--background-color-button);
+}
+
+button:active {
+    background-color: var(--background-color-button-active);
+}
+
+button[disabled] {
+    opacity: 0.5;
 }
 
 form-group,
