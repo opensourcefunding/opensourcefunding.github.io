@@ -1,4 +1,6 @@
 :root {
+    --font-size: 16px;
+    --line-height: 1.5rem;
     --text-color: #333333;
     --link-color: #666666;
     --link-color-active: #333333;
@@ -6,6 +8,7 @@
     --background-color-button: #dddddd;
     --background-color-button-active: #cccccc;
     --border-color: #dddddd;
+    --icon-color: #333333;
 }
 
 body {
@@ -15,7 +18,8 @@ body {
     padding: 0;
     font-family: 'Helvetica Neue', Arial, sans-serif;
     font-weight: normal;
-    line-height: 1.5;
+    font-size: var(--font-size);
+    line-height: var(--line-height);
     color: var(--text-color);
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
@@ -84,14 +88,28 @@ form {
     max-width: 40rem;
     display: grid;
     grid-template-areas:
-        "progress progress"
-        "question question"
-        "previous next";
+        ". progress ."
+        "question question question"
+        "previous . next";
+    grid-template-columns: 1fr 1fr 1fr;
 }
 
 form>progress {
     grid-area: progress;
     justify-self: center;
+    width: 100%;
+}
+
+button.previous {
+    padding-left: 0.25rem;
+    display: inline-flex;
+    flex-flow: row nowrap;
+}
+
+button.previous>ui-icon {
+    --icon-color: currentColor;
+    margin-right: 0.25rem;
+    transform: rotate(90deg);
 }
 
 form>button.previous {
@@ -99,18 +117,49 @@ form>button.previous {
     justify-self: start;
 }
 
+button.next {
+    padding-right: 0.25rem;
+    display: inline-flex;
+    flex-flow: row nowrap;
+}
+
+button.next>ui-icon {
+    --icon-color: currentColor;
+    margin-left: 0.25rem;
+    transform: rotate(-90deg);
+}
+
 form>button.next {
     grid-area: next;
     justify-self: end;
 }
 
+/* @keyframes slide-up {
+    0% {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(0, -10rem);
+    }
+} */
+
+survey-question:not(:defined) {
+    display: none;
+}
+
 survey-question {
     grid-area: question;
+    display: block;
+}
+
+survey-question[aria-hidden=true] {
+    pointer-events: none;
     display: none;
 }
 
 input,
-select,
 textarea {
     font: inherit;
     line-height: inherit;
@@ -156,15 +205,61 @@ button[disabled] {
     opacity: 0.5;
 }
 
+ui-select {
+    display: inline-block;
+    max-width: 100%;
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+    background-color: var(--background-color-button);
+    border-radius: 0.125rem;
+}
+
+ui-select>select {
+    display: inline-block;
+    width: 100%;
+    max-width: 100%;
+    padding: 0.25rem 2.5rem 0.25rem 1rem;
+    font: inherit;
+    line-height: inherit;
+    font-weight: bold;
+    color: var(--link-color);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-sizing: border-box;
+    border: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+}
+
+ui-select>select:-ms-expand {
+    display: none;
+}
+
+ui-select>ui-icon {
+    --icon-color: var(--link-color);
+    position: absolute;
+    top: .25rem;
+    right: .25rem;
+    padding-left: .25rem;
+    box-sizing: content-box;
+    pointer-events: none;
+    border-left: 1px solid rgba(0,0,0,.1);
+}
+
 form-group,
 radio-group {
     display: grid;
     grid-template-columns: auto 1fr;
     column-gap: .5rem;
+    align-items: center;
     margin: 0 0 1.5rem 0;
-    padding: 1.5rem;
-    border: 1px solid var(--border-color);
-    border-radius: .25rem;
+    /* padding: 1.5rem; */
+    /* border: 1px solid var(--border-color); */
+    /* border-radius: .25rem; */
 }
 
 form-group>[slot=header],

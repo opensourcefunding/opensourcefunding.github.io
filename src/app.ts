@@ -1,3 +1,5 @@
+import './elements/icon';
+import './elements/select';
 import './elements/check-box';
 import './elements/radio-button';
 import './elements/form-group';

@@ -29,10 +29,6 @@ export class SurveyForm extends HTMLFormElement {
         this.total = this.steps.length;
         this.active = 0;
 
-        console.log(this.steps);
-        console.log(this.total);
-        console.log(this.active);
-
         this.progress = document.createElement('progress');
         this.progress.max = this.total;
         this.progress.value = this.active + 1;
@@ -41,7 +37,7 @@ export class SurveyForm extends HTMLFormElement {
 
         this.previous = document.createElement('button');
         this.previous.type = 'button';
-        this.previous.textContent = 'Previous';
+        this.previous.innerHTML = `<ui-icon icon="angle-down"></ui-icon>Previous`;
         this.previous.className = 'previous';
         this.previous.setAttribute('aria-label', 'previous');
         this.previous.addEventListener('click', () => this.previous.dispatchEvent(new Event('previous-step', { bubbles: true, cancelable: true, composed: true })));
@@ -50,7 +46,7 @@ export class SurveyForm extends HTMLFormElement {
 
         this.next = document.createElement('button');
         this.next.type = 'button';
-        this.next.textContent = 'Next';
+        this.next.innerHTML = `Next<ui-icon icon="angle-down"></ui-icon>`;
         this.next.className = 'next';
         this.next.setAttribute('aria-label', 'next');
         this.next.addEventListener('click', () => this.next.dispatchEvent(new Event('next-step', { bubbles: true, cancelable: true, composed: true })));
@@ -99,12 +95,12 @@ export class SurveyForm extends HTMLFormElement {
             if (key !== this.active) {
 
                 step.setAttribute('aria-hidden', 'true');
-                step.setAttribute('style', 'display: none;');
+                // step.setAttribute('style', 'display: none;');
 
             } else {
 
-                step.setAttribute('aria-hidden', 'false');
-                step.setAttribute('style', 'display: initial;');
+                step.removeAttribute('aria-hidden');
+                // step.setAttribute('style', 'display: initial;');
             }
         });
 
