@@ -168,12 +168,23 @@
         </radio-group>
       </survey-question>
 
-      <survey-question name="experience" required="true">
+      <!-- <survey-question name="experience" required="true">
         <form-group>
           <h2 slot="header">How long have you been working with OpenSource software?</h2>
           <label for="experience">Years of experience</label>
           <input type="number" name="experience" id="experience" placeholder="Number of years, e.g. 5">
         </form-group>
+      </survey-question> -->
+
+      <survey-question name="experience" required="true">
+        <radio-group>
+          <h2 slot="header">How long have you been working with OpenSource software?</h2>
+          <radio-button name="experience" value="novice">less than 1 year</radio-button>
+          <radio-button name="experience" value="junior">1 - 2 years</radio-button>
+          <radio-button name="experience" value="medior">2 - 5 years</radio-button>
+          <radio-button name="experience" value="senior">5 - 10 years</radio-button>
+          <radio-button name="experience" value="veteran">more than 10 years</radio-button>
+        </radio-group>
       </survey-question>
 
       <survey-question name="usage" required="true">
