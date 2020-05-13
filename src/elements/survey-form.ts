@@ -96,12 +96,10 @@ export class SurveyForm extends HTMLFormElement {
             if (key !== this.active) {
 
                 step.setAttribute('aria-hidden', 'true');
-                // step.setAttribute('style', 'display: none;');
 
             } else {
 
                 step.removeAttribute('aria-hidden');
-                // step.setAttribute('style', 'display: initial;');
             }
         });
 
