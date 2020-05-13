@@ -1,7 +1,7 @@
 const TEMPLATE = document.createElement('template');
 
 TEMPLATE.innerHTML = `
-<div part="control"><div part="check"></div></div>
+<div part="control"><div part="check"><ui-icon icon="check"></ui-icon></div></div>
 <label part="label"><slot></slot></label>
 `;
 
@@ -9,40 +9,54 @@ let STYLE: CSSStyleSheet | HTMLStyleElement;
 
 const STYLE_CONTENT = `
 :host {
+    --icon-color: #fff;
     display: inline-grid;
     grid-template-columns: auto 1fr;
-    column-gap: .5rem;
+    column-gap: .75rem;
     align-items: center;
     justify-items: stretch;
     font: inherit;
+    border-radius: var(--border-radius, .125rem);
 }
 :host input {
     display: none;
+}
+:host ui-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 :host [part="control"] {
     display: flex;
     align-items: stretch;
     justify-content: stretch;
-    height: 1rem;
-    width: 1rem;
-    border: 1px solid var(--border-color, #ccc);
-    border-radius: .125rem;
+    height: 1.25rem;
+    width: 1.25rem;
+    border: .125rem solid var(--border-color, #ccc);
+    border-radius: var(--border-radius, .125rem);
     box-sizing: border-box;
 }
 :host [part="check"] {
     flex: 1 1 auto;
-    margin: 1px;
-    border-radius: .125rem;
+    position: relative;
+}
+:host([aria-checked="true"]) [part="control"] {
+    border-color: var(--background-color-active, dodgerblue);
+    background-color: var(--background-color-active, dodgerblue);
 }
 :host([aria-checked="true"]) [part="check"] {
     background-color: var(--background-color-active, dodgerblue);
+}
+:host([aria-checked="false"]) ui-icon {
+    display: none;
 }
 :host([aria-disabled=true]) {
     opacity: .5;
 }
 :host(:focus) {
     outline: none;
-    box-shadow: 0 0 0 2px var(--outline-color, dodgerblue);
+    box-shadow: 0 0 0 .125rem var(--outline-color, dodgerblue);
 }
 `;
 

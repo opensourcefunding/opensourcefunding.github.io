@@ -1,0 +1,37 @@
+:root {
+    --text-color: #fff;
+    --text-color-secondary: #def0c2;
+    --link-color: #caf2ca;
+    --link-color-active: #ffffff;
+    --background-color: #32cd32;
+    --background-color-button: #2db92e;
+    --background-color-button-active: #248f23;
+    --background-color-button-disabled: #30c431;
+}
+
+body {
+    /* background-color: #fff; */
+}
+
+header {
+    background-color: var(--background-color);
+}
+
+form-group,
+radio-group {
+    /* color: #333;
+    background-color: #fff; */
+}
+form-group>[slot=header],
+radio-group>[slot=header] {
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+form-group>[slot=description],
+radio-group>[slot=description] {
+    color: var(--text-color-secondary);
+    background-color: var(--background-color);
+}
+
+@media (max-width: 420px) {}

@@ -37,7 +37,7 @@ export class SurveyForm extends HTMLFormElement {
 
         this.previous = document.createElement('button');
         this.previous.type = 'button';
-        this.previous.innerHTML = `<ui-icon icon="angle-down"></ui-icon>Previous`;
+        this.previous.innerHTML = `<ui-icon icon="arrow-left"></ui-icon>`;
         this.previous.className = 'previous';
         this.previous.setAttribute('aria-label', 'previous');
         this.previous.addEventListener('click', () => this.previous.dispatchEvent(new Event('previous-step', { bubbles: true, cancelable: true, composed: true })));
@@ -46,7 +46,7 @@ export class SurveyForm extends HTMLFormElement {
 
         this.next = document.createElement('button');
         this.next.type = 'button';
-        this.next.innerHTML = `Next<ui-icon icon="angle-down"></ui-icon>`;
+        this.next.innerHTML = `<ui-icon icon="check"></ui-icon>`;
         this.next.className = 'next';
         this.next.setAttribute('aria-label', 'next');
         this.next.addEventListener('click', () => this.next.dispatchEvent(new Event('next-step', { bubbles: true, cancelable: true, composed: true })));
