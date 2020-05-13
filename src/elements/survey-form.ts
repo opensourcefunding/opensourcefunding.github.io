@@ -22,6 +22,7 @@ export class SurveyForm extends HTMLFormElement {
 
         this.listeners = new Map();
         this.listeners.set('change', this.handleChange.bind(this));
+        this.listeners.set('input', this.handleChange.bind(this));
         this.listeners.set('next-step', this.handleNextStep.bind(this));
         this.listeners.set('previous-step', this.handlePreviousStep.bind(this));
 
