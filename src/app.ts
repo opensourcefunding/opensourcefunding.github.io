@@ -5,6 +5,7 @@ import './elements/radio-button';
 import './elements/form-group';
 import './elements/radio-group';
 import './elements/survey-question';
+import './elements/survey-end';
 import './elements/survey-form';
 
 async function bootstrap () {

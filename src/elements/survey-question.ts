@@ -5,8 +5,6 @@ export class SurveyQuestion extends HTMLElement {
         return ['name', 'required'];
     }
 
-    protected listeners: Map<string, EventListener> = new Map();
-
     get name (): string | null {
 
         return this.getAttribute('name');
@@ -45,16 +43,6 @@ export class SurveyQuestion extends HTMLElement {
         }
     }
 
-    connectedCallback () {
-
-        // this.addListeners();
-    }
-
-    disconnectedCallback () {
-
-        // this.removeListeners();
-    }
-
     attributeChangedCallback (name: string, oldValue: string, newValue: string) {
 
         if (oldValue === newValue) return;
@@ -80,16 +68,6 @@ export class SurveyQuestion extends HTMLElement {
         return this.required
             ? !!formData.get(this.name!) || !!formData.get(`${ this.name }-other`)
             : true;
-    }
-
-    protected addListeners () {
-
-        this.listeners.forEach((listener, event) => this.addEventListener(event, listener));
-    }
-
-    protected removeListeners () {
-
-        this.listeners.forEach((listener, event) => this.removeEventListener(event, listener));
     }
 }
 

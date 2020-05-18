@@ -8,11 +8,11 @@
     --link-color-disabled: #999999;
     --background-color: #ffffff;
     --background-color-active: #1e90ff;
-    --background-color-input: rgba(0,0,0,.1);
+    --background-color-input: rgba(0, 0, 0, .1);
     --background-color-button: #e5e5e5;
     --background-color-button-active: #cccccc;
     --background-color-button-disabled: #efefef;
-    --border-color: rgba(0,0,0,.2);
+    --border-color: rgba(0, 0, 0, .2);
     --icon-color: #333333;
     --border-radius: .125rem;
     --border-width: .125rem;
@@ -122,7 +122,7 @@ footer>nav>ul>li>a {
 
 progress {
     width: calc(100% - 3rem);
-    height: .5rem;
+    height: .25rem;
     margin: 0;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -210,31 +210,70 @@ form>button.next {
     justify-self: end;
 }
 
-/* @keyframes slide-up {
+@keyframes slide-out {
     0% {
-        opacity: 1;
         transform: translate(0, 0);
     }
-    100% {
-        opacity: 0;
-        transform: translate(0, -10rem);
-    }
-} */
 
-survey-question:not(:defined) {
+    100% {
+        transform: translate(-40rem, 0);
+    }
+}
+
+@keyframes slide-in {
+    0% {
+        transform: translate(40rem, 0);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+survey-question:not(:defined),
+survey-end:not(:defined) {
     display: none;
 }
 
-survey-question {
+survey-question,
+survey-end {
     grid-area: question;
     display: block;
     max-height: 100%;
     overflow: scroll;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity, visibility;
+    transition-duration: 0.3s, 0s;
+    transition-delay: 0s, 0s;
+    animation: slide-in 0.3s ease-in-out;
 }
 
-survey-question[aria-hidden=true] {
+survey-question[aria-hidden=true],
+survey-end[aria-hidden=true] {
     pointer-events: none;
-    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity, visibility;
+    transition-duration: 0.3s, 0s;
+    transition-delay: 0s, 0.3s;
+    animation: slide-out 0.3s ease-in-out;
+}
+
+survey-end>h2 {
+    margin: 0;
+    padding: 1.25rem 1.5rem 1.5rem;
+    font-size: 1.5rem;
+    line-height: 2.25rem;
+    font-weight: normal;
+    grid-column: 1 / span 2;
+}
+
+survey-end>p {
+    margin: 0;
+    padding: 0 1.5rem 1.5rem;
+    grid-column: 1 / span 2;
+    color: var(--text-color-secondary);
 }
 
 input,
@@ -343,7 +382,7 @@ radio-group {
 form-group>[slot=header],
 radio-group>[slot=header] {
     margin: 0;
-    padding: 1rem 1.5rem 1.5rem;
+    padding: 1.25rem 1.5rem 1.5rem;
     font-size: 1.5rem;
     line-height: 2.25rem;
     font-weight: normal;
@@ -397,12 +436,14 @@ radio-group>button {
         bottom: 1.5rem;
         margin: 0;
     }
+
     button.next {
         position: absolute;
         right: 1.5rem;
         bottom: 1.5rem;
         margin: 0;
     }
+
     form {
         width: 100%;
         height: 100%;
@@ -415,6 +456,7 @@ radio-group>button {
         grid-template-columns: auto;
         grid-template-rows: auto auto;
     }
+
     form-group,
     radio-group {
         padding-bottom: 4.5rem;
