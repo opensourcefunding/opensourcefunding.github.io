@@ -41,6 +41,13 @@ export class SurveyForm extends HTMLFormElement {
         this.total = this.questions.length;
         this.active = 0;
 
+        const surveyId = localStorage.getItem('surveyId');
+
+        if (surveyId) {
+
+            this.active = this.total;
+        }
+
         this.createProgress();
 
         this.createPrevious();
@@ -185,9 +192,29 @@ export class SurveyForm extends HTMLFormElement {
         }
     }
 
-    protected handleSubmit () {
+    protected async handleSubmit () {
 
-        console.log('submitting survey...', this.getResults());
+        const result = this.getResults();
+
+        try {
+
+            const response = await fetch('https://us-central1-opensourcefunding-8646c.cloudfunctions.net/postSurvey', {
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                method: 'POST',
+                body: JSON.stringify(result),
+            });
+
+            const surveyId = await response.text();
+
+            localStorage.setItem('surveyId', surveyId);
+
+        } catch (error) {
+
+            // TODO: handle request errors
+        }
+
 
         this.active = this.total;
 
