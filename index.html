@@ -245,10 +245,23 @@
       </survey-question>
 
       <survey-end end="2020-06-20">
-        <h2 slot="header">Thank your for participating in our survey.</h2>
-        <p slot="description">The results of the survey will be published <a href="#results">here</a> in
-          <span data-days-left>30 days</span>.</p>
-        <p slot="description">Please check back later.</p>
+
+        <h2 slot="initial">You have already completed the survey.</h2>
+        <p slot="initial">The results of the survey will be published <a href="#results">here</a>
+          <span data-days-left>in 30 days</span>.</p>
+
+        <h2 slot="loading">We are submitting your survey.</h2>
+        <p slot="loading">This will just take a second.</p>
+
+        <h2 slot="success">Thank your for participating in our survey.</h2>
+        <p slot="success">The results of the survey will be published <a href="#results">here</a>
+          <span data-days-left>in 30 days</span>.</p>
+        <p slot="success">Please check back later.</p>
+
+        <h2 slot="error">There was an error submitting your survey.</h2>
+        <p slot="error">To try again please click the button below.</p>
+        <p slot="error"><button type="button" class="again">Try again<ui-icon icon="message"></ui-icon></button></p>
+
       </survey-end>
 
     </form>

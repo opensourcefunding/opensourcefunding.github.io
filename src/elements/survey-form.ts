@@ -22,8 +22,6 @@ export class SurveyForm extends HTMLFormElement {
 
     next!: HTMLButtonElement;
 
-    // submit!: HTMLButtonElement;
-
     active = 0;
 
     total = 0;
@@ -64,7 +62,7 @@ export class SurveyForm extends HTMLFormElement {
         this.removeListeners();
     }
 
-    getResults (): { [key: string]: any } {
+    getResult (): { [key: string]: any } {
 
         const formJSON = [...new FormData(this).entries()].reduce((json, [name, value]) => {
 
@@ -139,7 +137,7 @@ export class SurveyForm extends HTMLFormElement {
         this.next.innerHTML = `<ui-icon icon="check"></ui-icon>`;
         this.next.className = 'next';
         this.next.setAttribute('aria-label', 'next');
-        this.next.addEventListener('click', () => this.next.dispatchEvent(new Event('next-step', EVENT_INIT)));
+        this.next.addEventListener('click', () => this.next.dispatchEvent(new Event('next-step', { ...EVENT_INIT })));
 
         this.append(this.next);
     }
@@ -151,7 +149,7 @@ export class SurveyForm extends HTMLFormElement {
         this.previous.innerHTML = `<ui-icon icon="arrow-left"></ui-icon>`;
         this.previous.className = 'previous';
         this.previous.setAttribute('aria-label', 'previous');
-        this.previous.addEventListener('click', () => this.previous.dispatchEvent(new Event('previous-step', EVENT_INIT)));
+        this.previous.addEventListener('click', () => this.previous.dispatchEvent(new Event('previous-step', { ...EVENT_INIT })));
 
         this.append(this.previous);
     }
@@ -161,6 +159,7 @@ export class SurveyForm extends HTMLFormElement {
         this.progress = document.createElement('progress');
         this.progress.max = this.total;
         this.progress.value = this.active + 1;
+        this.progress.setAttribute('aria-live', 'polite');
 
         this.prepend(this.progress);
     }
@@ -172,12 +171,20 @@ export class SurveyForm extends HTMLFormElement {
 
     protected handleNextStep () {
 
-        if (this.questions.item(this.active).isValid() && this.active < this.total - 1) {
+        const currentStep = this.questions.item(this.active);
+
+        const isValid = currentStep
+            ? currentStep.isValid()
+            // if currentStep is undefined we ae at the end and consider the form valid
+            : true;
+
+        if (this.active < this.total - 1 && isValid) {
 
             this.active++;
+
             this.update()
 
-        } else if (this.questions.item(this.active).isValid()) {
+        } else if (isValid) {
 
             this.handleSubmit();
         }
@@ -188,13 +195,14 @@ export class SurveyForm extends HTMLFormElement {
         if (this.active > 0) {
 
             this.active--;
+
             this.update()
         }
     }
 
     protected async handleSubmit () {
 
-        const result = this.getResults();
+        this.loadingState();
 
         try {
 
@@ -203,22 +211,63 @@ export class SurveyForm extends HTMLFormElement {
                     'Content-Type': 'application/json'
                 },
                 method: 'POST',
-                body: JSON.stringify(result),
+                body: JSON.stringify(this.getResult()),
             });
 
             const surveyId = await response.text();
 
             localStorage.setItem('surveyId', surveyId);
 
+            this.successState();
+
         } catch (error) {
 
-            // TODO: handle request errors
+            this.errorState();
         }
+    }
 
+    protected loadingState () {
 
         this.active = this.total;
 
+        this.end.state = 'loading';
+
         this.update();
+
+        this.progress.removeAttribute('value');
+    }
+
+    protected successState () {
+
+        this.active = this.total;
+
+        this.end.state = 'success';
+
+        this.update();
+
+        this.progress.value = this.active;
+    }
+
+    protected errorState () {
+
+        this.active = this.total;
+
+        this.end.state = 'error';
+
+        this.update();
+
+        this.progress.value = this.active;
+
+        const again = this.querySelector('.again') as HTMLButtonElement;
+
+        const handler = () => {
+
+            again.dispatchEvent(new Event('next-step', { ...EVENT_INIT }));
+
+            again.removeEventListener('click', handler);
+        }
+
+        again.addEventListener('click', handler);
     }
 
     protected addListeners () {

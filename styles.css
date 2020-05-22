@@ -120,10 +120,21 @@ footer>nav>ul>li>a {
 
 /* form */
 
+@keyframes loader {
+    0% {
+        background-position: 0px 0px;
+    }
+
+    100% {
+        background-position: min(calc(100vw - 3rem), 37rem) 0px;
+    }
+}
+
 progress {
     width: calc(100% - 3rem);
     height: .25rem;
     margin: 0;
+    display: inline-block;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -131,6 +142,12 @@ progress {
     background-color: var(--background-color-input);
     border-radius: var(--border-radius);
     border: none;
+}
+
+progress:not([value]) {
+    animation: loader 1s linear infinite;
+    background-image: linear-gradient(to right, var(--background-color), var(--background-color-active));
+    background-repeat: repeat-x;
 }
 
 progress::-webkit-progress-bar {
@@ -143,6 +160,10 @@ progress::-webkit-progress-value {
 
 progress::-moz-progress-bar {
     background-color: var(--background-color-active);
+}
+
+progress:not([value])::-moz-progress-bar {
+    background-color: transparent;
 }
 
 form {
@@ -205,6 +226,23 @@ button.next>ui-icon {
     --icon-color: currentColor;
 }
 
+button.again {
+    display: inline-flex;
+    flex-flow: row nowrap;
+    padding: .75rem;
+    color: #fff;
+    background-color: var(--background-color-active);
+}
+
+button.again:active:not(:disabled) {
+    background-color: #0075eb;
+}
+
+button.again>ui-icon {
+    --icon-color: currentColor;
+    margin-left: 0.25rem;
+}
+
 form>button.next {
     grid-area: next;
     justify-self: end;
@@ -227,6 +265,16 @@ form>button.next {
 
     100% {
         transform: translate(0, 0);
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotateZ(0deg);
+    }
+
+    100% {
+        transform: rotateZ(-360deg);
     }
 }
 
@@ -323,6 +371,10 @@ button:active {
 button[disabled] {
     color: var(--link-color-disabled);
     background-color: var(--background-color-button-disabled);
+}
+
+ui-icon[icon=sync] {
+    animation: rotate 1s linear infinite;
 }
 
 ui-select {
@@ -430,6 +482,7 @@ radio-group>button {
 }
 
 @media (max-width: 420px) {
+
     button.previous {
         position: absolute;
         left: 1.5rem;
