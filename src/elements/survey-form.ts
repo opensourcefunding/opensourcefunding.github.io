@@ -164,6 +164,38 @@ export class SurveyForm extends HTMLFormElement {
         this.prepend(this.progress);
     }
 
+    protected getNextStep (): number {
+
+        if (this.active === this.total) return this.total;
+
+        const indizes = this.filterSteps();
+
+        return indizes[indizes.indexOf(this.active) + 1];
+    }
+
+    protected getPreviousStep (): number {
+
+        if (this.active === 0) return 0;
+
+        const indizes = this.filterSteps();
+
+        return indizes[indizes.indexOf(this.active) - 1];
+    }
+
+    protected filterSteps () {
+
+        const result = this.getResult();
+
+        let steps = [...this.questions.entries()];
+
+        if (result.role === 'user') {
+
+            steps = steps.filter(([index, question]) => question.name !== 'motivation-contributor' && question.name !== 'frequency');
+        }
+
+        return steps.map(([index, question]) => index);
+    }
+
     protected handleChange () {
 
         this.update();
@@ -180,7 +212,7 @@ export class SurveyForm extends HTMLFormElement {
 
         if (this.active < this.total - 1 && isValid) {
 
-            this.active++;
+            this.active = this.getNextStep();
 
             this.update()
 
@@ -194,7 +226,7 @@ export class SurveyForm extends HTMLFormElement {
 
         if (this.active > 0) {
 
-            this.active--;
+            this.active = this.getPreviousStep();
 
             this.update()
         }
