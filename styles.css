@@ -177,7 +177,7 @@ form {
         "question question question"
         "previous . next";
     grid-template-columns: auto 1fr auto;
-    grid-template-rows: auto auto auto;
+    grid-template-rows: 6rem 2fr 1fr;
 }
 
 form>progress {
@@ -481,7 +481,7 @@ radio-group>button {
     justify-self: end;
 }
 
-@media (max-width: 420px) {
+@media (max-width: 460px) {
 
     button.previous {
         position: absolute;
@@ -507,7 +507,7 @@ radio-group>button {
             "progress"
             "question";
         grid-template-columns: auto;
-        grid-template-rows: auto auto;
+        grid-template-rows: auto 1fr;
     }
 
     form-group,
