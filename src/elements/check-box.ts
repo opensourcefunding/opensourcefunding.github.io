@@ -12,7 +12,7 @@ const STYLE_CONTENT = `
     --icon-color: #fff;
     display: inline-grid;
     grid-template-columns: auto 1fr;
-    column-gap: .75rem;
+    column-gap: var(--grid);
     align-items: center;
     justify-items: stretch;
     font: inherit;
@@ -31,9 +31,9 @@ const STYLE_CONTENT = `
     display: flex;
     align-items: stretch;
     justify-content: stretch;
-    height: 1.25rem;
-    width: 1.25rem;
-    border: .125rem solid var(--border-color, #ccc);
+    height: calc(var(--grid) * 10/6);
+    width: calc(var(--grid) * 10/6);
+    border: var(--border-width, .125rem) solid var(--border-color, #ccc);
     border-radius: var(--border-radius, .125rem);
     box-sizing: border-box;
 }

@@ -16,7 +16,7 @@
     --icon-color: #333333;
     --border-radius: .125rem;
     --border-width: .125rem;
-    --width: 40rem;
+    --width: 60ch;
 }
 
 :focus {
@@ -87,7 +87,6 @@ main>section {
     justify-content: stretch;
     align-items: stretch;
     flex: 1 1 100%;
-    overflow: scroll;
     width: 100%;
     max-width: var(--width);
     max-height: 100%;

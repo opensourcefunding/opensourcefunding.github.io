@@ -11,6 +11,20 @@ import { Router, Routes } from './router';
 
 const handleNavigation = (page: string) => {
 
+    document.querySelectorAll<HTMLAnchorElement>('header > nav a').forEach(
+        link => {
+
+            if (link.href.replace(/^.*?#/, '') === page) {
+
+                link.setAttribute('aria-current', 'page');
+
+            } else {
+
+                link.removeAttribute('aria-current');
+            }
+        }
+    );
+
     document.querySelectorAll('main > section').forEach(
         section => {
 

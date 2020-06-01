@@ -1,7 +1,7 @@
 const TEMPLATE = document.createElement('template');
 
 TEMPLATE.innerHTML = `
-<svg focusable="false"><use/></svg>
+<svg focusable="false" aria-hidden="true"><use/></svg>
 `;
 
 let STYLE: CSSStyleSheet | HTMLStyleElement;
