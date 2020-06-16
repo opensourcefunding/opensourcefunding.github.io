@@ -6,13 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Open Source Funding</title>
   <link rel="stylesheet" href="theme.css">
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-16350314-4"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'UA-16350314-4');
-  </script>
   <script>
     if (this.customElements) {
       try { customElements.define('built-in', document.createElement('p').constructor, { 'extends': 'p' }); }
@@ -45,7 +38,7 @@
 
     <section id="home">
 
-      <h1>OpenSourceFunding</h1>
+      <h1 class="visually-hidden">OpenSourceFunding</h1>
       <h2>Hi folks,</h2>
       <p>We are a couple of guys who are scientifically engaged in the topic of open source. To get a better picture of
         the current state of play, we’d really like to find out how you feel about open source related funding. The aim
@@ -67,7 +60,7 @@
 
     <section id="survey">
 
-      <h1>Survey</h1>
+      <h1 class="visually-hidden">Survey</h1>
       <form is="survey-form" aria-label="survey" name="survey">
 
         <survey-question name="who-benefits" required="true">
@@ -540,10 +533,122 @@
     </section>
 
     <section id="results">
-      <h1>Survey Results</h1>
+      <h1 class="visually-hidden">Survey Results</h1>
       <h2>The survey is currently in progress.</h2>
       <p>The results of the survey will be published <a href="#results">here</a> <span data-days-left>in 30 days</span>.
       </p>
+    </section>
+
+    <section id="privacy">
+
+      <h1>Privacy Policy</h1>
+      <p>This privacy policy will explain how we use the personal data we collect from you when you use our website.</p>
+
+      <h2>What data do we collect?</h2>
+      <p>We don't collect any personal data. We only collect the answers you voluntarily give us when you complete our
+        survey. Your answers are stored anonymously and can not be used to identify you personally.</p>
+
+      <h3>How do we collect your data?</h3>
+      <p>You directly provide us with most of the data we collect. We collect data and process data when you:</p>
+      <ul>
+        <li>Voluntarily complete our survey.</li>
+        <li>Use or view our website in your browser.</li>
+      </ul>
+
+      <h3>How will we use your data?</h3>
+      <p>We collect your data so that we can:</p>
+      <ul>
+        <li>Perform a survey on the topic of funding in OpenSource projects.</li>
+        <li>Statistically analyze the opinions of the community.</li>
+        <li>Share the results of our survey with the community.</li>
+      </ul>
+
+      <h3>How do we store your data?</h3>
+      <p>We store your answers securely on Google's Cloud Firestore.</p>
+      <p>We will keep your answers for as long as this website operates, out of public interest.</p>
+
+      <h2>What are your data protection rights?</h2>
+      <p>We would like to make sure you are fully aware of all of your data protection rights. Every user is entitled to
+        the following:</p>
+
+      <p><strong>The right to access</strong>
+        You have the right to request copies of your personal data from us.</p>
+
+      <p><strong>The right to rectification</strong>
+        You have the right to request that we correct any information you believe is inaccurate and complete information
+        you believe is incomplete.</p>
+
+      <p><strong>The right to erasure</strong>
+        You have the right to request that we erase your personal data, under certain conditions.</p>
+
+      <p><strong>The right to restrict processing</strong>
+        You have the right to request that we restrict the processing of your personal data, under certain conditions.
+      </p>
+
+      <p><strong>The right to object to processing</strong>
+        You have the right to object to our processing of your personal data, under certain conditions.</p>
+
+      <p><strong>The right to data portability</strong>
+        You have the right to request that we transfer the data that we have collected to another organization, or
+        directly to you, under certain conditions.</p>
+
+      <p>If you make a request, we have one month time to respond to you. If you would like to exercise any of these
+        rights, please contact us at our email: <a
+          href="mailto:support@opensourcefunding.github.io">support@opensourcefunding.github.io</a></p>
+
+      <h2>Cookies</h2>
+      <p>A cookie is a small text file that a website stores on your computer or mobile device when you visit the site.
+        When you visit our website, we may collect information from you automatically through cookies or similar
+        technology.</p>
+      <p>For further information, visit <a href="https://www.allaboutcookies.org/"
+          target="_blank">allaboutcookies.org</a>.</p>
+
+      <h3>How do we use cookies?</h3>
+      <p>Our website uses third-party cookies to collect usage statistics and understand how you use our website.</p>
+
+      <h3>What types of cookies do we use?</h3>
+
+      <h4>Analytics cookies</h4>
+      <p>We use a minimal setup of Google Analytics to collect website usage statistics. We use this data purely for
+        internal research on the reach of our survey.</p>
+      <p>We collect usage statistics anonymously and don't store full IP adresses so that the data gathered can not
+        identify you personally. In addition, we do not share this data with any third parties or use it for any other
+        purpose than described above.</p>
+      <p>For more information on how Google uses data when you use our website, please view <a
+          href="https://policies.google.com/technologies/partner-sites">Google's Privacy Policy</a>.</p>
+
+      <h3>How to manage cookies?</h3>
+
+      <h4>Removing cookies from your device</h4>
+      <p>You can delete all cookies that are already on your device by clearing the browsing history of your browser.
+        This will remove all cookies from all websites you have visited.</p>
+      <p>Be aware though that you may also lose some saved information (e.g. saved login details, site preferences).</p>
+
+      <h4>Managing site-specific cookies</h4>
+      <p>For more detailed control over site-specific cookies, check the privacy and cookie settings in your preferred
+        browser.</p>
+
+      <h4>Blocking cookies</h4>
+      <p>You can set most modern browsers to prevent any cookies being placed on your device, but you may then have to
+        manually adjust some preferences every time you visit a site/page. And some services and functionalities may not
+        work properly at all (e.g. profile logging-in).</p>
+
+      <p>For more details on how to manage/delete cookies, visit <a href="https://www.allaboutcookies.org/"
+          target="_blank">allaboutcookies.org</a>.</p>
+
+      <h2>Privacy policies of other websites</h2>
+      <p>Our website contains links to other websites. Our privacy policy applies only to our website, so if you click
+        on a link to another website, you should read their privacy policy.</p>
+
+      <h2>Changes to our privacy policy</h2>
+      <p>We keep our privacy policy under review and place any updates on this web page. This privacy policy was last
+        updated on 15 June 2020.</p>
+
+      <h2>How to contact us</h2>
+      <p>If you have any questions about our privacy policy, the data we hold on you, or you would like to exercise one
+        of your data protection rights, please do not hesitate to contact us at our email:
+        <a href="mailto:support@opensourcefunding.github.io">support@opensourcefunding.github.io</a>.</p>
+
     </section>
 
   </main>
@@ -552,11 +657,26 @@
     <p>&copy; Copyright 2020</p>
     <nav aria-label="footer navigation">
       <ul>
-        <li><a href="/">Imprint</a></li>
-        <li><a href="/">Contact</a></li>
+        <li><a href="#privacy">Privacy Policy</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
   </footer>
+
+  <template id="cookie-popup">
+    <section class="cookie-popup" role="dialog" aria-hidden="false" aria-live="polite">
+      <header>
+        <h1>This website uses cookies</h1>
+      </header>
+      <p>We use cookies to collect anonymous usage statistics. We don't collect personal data and we don't share
+        information about your use of our site with others.</p>
+      <footer>
+        <a href="#privacy">Privacy policy</a>
+        <button id="decline_cookies">Decline</button>
+        <button id="accept_cookies" class="primary">Accept</button>
+      </footer>
+    </section>
+  </template>
 
   <script src="dist/app.bundle.js"></script>
 </body>

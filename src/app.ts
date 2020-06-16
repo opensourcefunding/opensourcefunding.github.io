@@ -7,7 +7,51 @@ import './elements/select';
 import './elements/survey-question';
 import './elements/survey-end';
 import './elements/survey-form';
+import { Analytics } from './analytics';
 import { Router, Routes } from './router';
+
+const showCookiePopup = () => {
+
+    const template = document.getElementById('cookie-popup') as HTMLTemplateElement;
+
+    document.body.append(template.content.cloneNode(true));
+
+    document.getElementById('decline_cookies')?.addEventListener('click', () => {
+
+        localStorage.setItem('allowAnalytics', 'false');
+
+        manageCookies();
+
+        document.body.querySelector('.cookie-popup')?.remove();
+    });
+
+    document.getElementById('accept_cookies')?.addEventListener('click', () => {
+
+        localStorage.setItem('allowAnalytics', 'true');
+
+        manageCookies();
+
+        document.body.querySelector('.cookie-popup')?.remove();
+    });
+}
+
+const manageCookies = () => {
+
+    const allowAnalytics = localStorage.getItem('allowAnalytics');
+
+    // first visit
+    if (allowAnalytics === null) {
+
+        showCookiePopup();
+
+    } else {
+
+        if (allowAnalytics === 'true') {
+
+            Analytics.enable();
+        }
+    }
+}
 
 const handleNavigation = (page: string) => {
 
@@ -31,12 +75,15 @@ const handleNavigation = (page: string) => {
             section.setAttribute('aria-hidden', JSON.stringify(section.id !== page));
         }
     );
+
+    Analytics.event('screen_view', { screen_name: page });
 };
 
 const ROUTES: Routes = {
     '#home': () => handleNavigation('home'),
     '#survey': () => handleNavigation('survey'),
     '#results': () => handleNavigation('results'),
+    '#privacy': () => handleNavigation('privacy'),
     '**': () => handleNavigation('home'),
 };
 
@@ -45,6 +92,8 @@ async function bootstrap () {
     const router = new Router(ROUTES);
 
     router.start();
+
+    manageCookies();
 }
 
 window.addEventListener('DOMContentLoaded', () => {

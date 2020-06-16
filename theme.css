@@ -97,27 +97,59 @@ footer {
     color: var(--color-text-secondary);
 }
 
+.visually-hidden {
+    display: block !important;
+    height: 0 !important;
+    width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
 h1,
-h2 {
+h2,
+h3,
+h4 {
     margin: 0;
     padding: 2rem 2rem;
-    font-size: 2rem;
+    font-size: 2.5rem;
     line-height: 3rem;
     font-weight: normal;
 }
 
-h1 {
-    text-align: center;
-    height: 0;
-    padding: 0;
-    overflow: hidden;
-    opacity: 0;
+h2 {
+    font-size: 2rem;
+}
 
+h3,
+h4 {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 1.33333rem;
 }
 
 p {
     margin: 0;
     padding: 0 2rem 2rem;
+}
+
+ul {
+    margin: 0;
+    padding: 0 2rem 2rem 5rem;
+}
+
+strong {
+    font-weight: bold;
+}
+
+p>strong {
+    display: block;
 }
 
 textarea {
@@ -196,13 +228,15 @@ button.next {
 }
 
 button.next:not(:disabled),
-button.again:not(:disabled) {
+button.again:not(:disabled),
+button.primary:not(:disabled) {
     color: var(--color-primary-contrast);
     background-color: var(--color-primary);
 }
 
 button.next:active:not(:disabled),
-button.again:active:not(:disabled) {
+button.again:active:not(:disabled),
+button.primary:active:not(:disabled) {
     background-color: #0075eb;
 }
 
@@ -312,7 +346,7 @@ nav>ul>li>a[aria-current] {
 * FOOTER
 *********************/
 
-footer {
+body>footer {
     display: none;
     align-items: center;
     justify-content: center;
@@ -320,16 +354,49 @@ footer {
     color: var(--color-text-secondary);
 }
 
-footer p {
+body>footer p {
     padding: 0;
 }
 
-footer>nav>ul {
+body>footer>nav>ul {
     padding: 0.75rem;
 }
 
-footer>nav>ul>li>a {
+body>footer>nav>ul>li>a {
     font-weight: normal;
+}
+
+/*********************
+* COOKIE POPUP
+*********************/
+
+.cookie-popup {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    background: var(--background-color);
+    border-radius: var(--border-radius);
+    box-shadow:
+        0 0 0 1px rgba(0, 0, 0, .05),
+        0 0 1rem 0 rgba(0, 0, 0, .25);
+}
+
+.cookie-popup>header>h1 {
+    font-size: inherit;
+    font-weight: bold;
+    line-height: inherit;
+}
+
+.cookie-popup>footer {
+    padding: 0 2rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.cookie-popup>footer>* {
+    margin-left: 1rem;
 }
 
 /*********************
@@ -519,7 +586,8 @@ form-group>label+ui-select {
 @media (min-width: 70ch) and (min-height: 40rem) {
 
     #home,
-    #results {
+    #results,
+    #privacy {
         padding-top: 5rem;
     }
 
@@ -546,6 +614,13 @@ form-group>label+ui-select {
         grid-area: next;
         justify-self: end;
     }
+
+    .cookie-popup {
+        bottom: 2rem;
+        left: 50%;
+        max-width: calc(4rem + var(--width));
+        transform: translate(-50%, 0);
+    }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -564,5 +639,9 @@ form-group>label+ui-select {
         --background-color-button-active: #606769;
         --background-color-button-disabled: #414344;
         --border-color: #585b5c;
+    }
+
+    .cookie-popup {
+        background: #0f0f0f;
     }
 }
