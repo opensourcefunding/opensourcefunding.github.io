@@ -53,6 +53,32 @@ const manageCookies = () => {
     }
 }
 
+const initCallToAction = () => {
+
+    document.querySelector('.call-to-action > button')?.addEventListener('click', event => {
+
+        event.preventDefault();
+
+        document.location.hash = 'survey';
+    });
+};
+
+const initDaysLeft = (end: Date) => {
+
+    const today = new Date();
+    const daysLeft = Math.round((end.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+
+    const daysLeftMarker = document.querySelectorAll('[data-days-left]');
+
+    if (daysLeftMarker.length) {
+
+        daysLeftMarker.forEach(marker => {
+
+            marker.textContent = `${ (daysLeft > 0) ? `in ${ daysLeft }` : 'today' }${ (daysLeft > 1) ? ' days' : (daysLeft === 1) ? ' day' : '' }`;
+        });
+    }
+};
+
 const handleNavigation = (page: string) => {
 
     document.querySelectorAll<HTMLAnchorElement>('header > nav a').forEach(
@@ -90,6 +116,10 @@ const ROUTES: Routes = {
 async function bootstrap () {
 
     manageCookies();
+
+    initCallToAction();
+
+    initDaysLeft(new Date('2020-07-31'));
 
     const router = new Router(ROUTES);
 

@@ -139,6 +139,22 @@ p {
     padding: 0 2rem 2rem;
 }
 
+p.call-to-action {
+    padding: 2rem 2rem 4rem;
+    text-align: center;
+}
+
+p.share {
+    padding: 2rem 2rem 4rem;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+p.share>a {
+    padding: 1rem;
+    border-radius: 50%;
+}
+
 ul {
     margin: 0;
     padding: 0 2rem 2rem 5rem;

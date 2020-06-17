@@ -3,7 +3,10 @@
 
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="Open Source, Funding">
+  <meta name="description" content="Share your thoughts on funding in open-source projects." />
   <title>Open Source Funding</title>
   <link rel="stylesheet" href="theme.css">
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-16350314-4"></script>
@@ -40,22 +43,44 @@
     <section id="home">
 
       <h1 class="visually-hidden">OpenSourceFunding</h1>
-      <h2>Hi folks,</h2>
-      <p>We are a couple of guys who are scientifically engaged in the topic of open source. To get a better picture of
-        the current state of play, we’d really like to find out how you feel about open source related funding. The aim
-        of the survey is to find out, whether open source developers should be involved in the commercial success of
-        their projects or who the use of open source actually helps - the developers or the companies that make money
-        from the use of the components? Furthermore, it is of interest, whether and if so, what effect an incentive
-        model has on the quality and operation of the software?</p>
-      <p>As we know how precious your time is, we have kept the survey itself as compact as possible. It will be online
-        for four weeks and the whole takes no longer than 10 minutes. The few questions are private and your answers
-        will be evaluated anonymously. The results will of course be made available to you under
-        opensourcefunding.github.io.</p>
-      <p>Pls take part in the survey. Every contribution is very important. It would be great if we could use the
-        results to improve the situation for users and developers and thus secure open source projects in the long term.
-        We personally want to thank you for every second invested in our research. You guys rock!</p>
-      <p>Cheers,</p>
-      <p>Your fellow research team</p>
+
+      <h2>Dear visitor,</h2>
+      <p>We all rely on open-source software every day. It's in our browsers, on the servers that serve our websites,
+        our mobile phones, and even in the websites and software we use. Open-source software enables developers to
+        reuse existing solutions to engineering problems, offload their maintenance to the open-source community and
+        significantly decrease the amount of time and work needed to release new software products.</p>
+      <p>But it also poses difficult and hotly debated questions: How do we compensate the open-source community for
+        their efforts? How can we ensure open-source projects keep being maintained? Should open-source developers be
+        involved in the commercial success of their projects? And finally: Who really benefits most from open-source
+        software - the community or the companies that make profits from using it?</p>
+      <p>With this survey, we want to find out how you (the open-source community) feel about funding in open-source
+        projects and answer some of the questions above. We know your time is precious, so we kept this survey as
+        compact as possible: 10 minutes tops, we promise! Your answers will be stored and evaluated anonymously, and of
+        course, we will publish the results of this survey here on
+        <a href="https://opensourcefunding.github.io/#results">https://opensourcefunding.github.io/#results</a>.</p>
+      <p class="call-to-action">
+        <button class="primary">Take Survey</button>
+      </p>
+      <p>Your contribution counts, and we personally want to thank you for every second you invested in our survey. We
+        hope the results can amplify the voices of the open-source community, contribute to improving the situation for
+        open-source maintainers, and thus, secure open-source projects in the long term.</p>
+      <p>Thank you,</p>
+      <p><strong>Your fellow OpenSourceFunding team</strong></p>
+      <p>P.S.: We'd love for you you to share our survey - the more answers the better!</p>
+      <p class="share">
+        <a href="https://twitter.com/intent/tweet/?text=Share%20your%20thoughts%20on%20funding%20in%20open-source%20projects.%20https%3A%2F%2Fopensourcefunding.github.io%20%23OpenSourceFunding"
+          rel="noopener noreferrer" target="_blank" aria-label="Share on Twitter">
+          <ui-icon icon="twitter"></ui-icon>
+        </a>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fopensourcefunding.github.io"
+          rel="noopener noreferrer" target="_blank" aria-label="Share on Facebook">
+          <ui-icon icon="facebook"></ui-icon>
+        </a>
+        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fopensourcefunding.github.io&title=Share%20your%20thoughts%20on%20funding%20in%20open-source%20projects.&summary="
+          rel="noopener noreferrer" target="_blank" aria-label="Share on LinkedIn">
+          <ui-icon icon="linkedin"></ui-icon>
+        </a>
+      </p>
 
     </section>
 
@@ -510,19 +535,46 @@
           </radio-group>
         </survey-question>
 
-        <survey-end end="2020-06-20">
+        <survey-end>
 
           <h2 slot="initial">You have already completed the survey.</h2>
           <p slot="initial">The results of the survey will be published <a href="#results">here</a>
-            <span data-days-left>in 30 days</span>.</p>
+            <span data-days-left>in 30 days</span>. In the meantime, why don't you help to spread the word?</p>
+          <p slot="initial" class="share">
+            <a href="https://twitter.com/intent/tweet/?text=Share%20your%20thoughts%20on%20funding%20in%20open-source%20projects.%20https%3A%2F%2Fopensourcefunding.github.io%20%23OpenSourceFunding"
+              rel="noopener noreferrer" target="_blank" aria-label="Share on Twitter">
+              <ui-icon icon="twitter"></ui-icon>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fopensourcefunding.github.io"
+              rel="noopener noreferrer" target="_blank" aria-label="Share on Facebook">
+              <ui-icon icon="facebook"></ui-icon>
+            </a>
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fopensourcefunding.github.io&title=Share%20your%20thoughts%20on%20funding%20in%20open-source%20projects.&summary="
+              rel="noopener noreferrer" target="_blank" aria-label="Share on LinkedIn">
+              <ui-icon icon="linkedin"></ui-icon>
+            </a>
+          </p>
 
           <h2 slot="loading">We are submitting your survey.</h2>
           <p slot="loading">This will just take a second.</p>
 
           <h2 slot="success">Thank your for participating in our survey.</h2>
           <p slot="success">The results of the survey will be published <a href="#results">here</a>
-            <span data-days-left>in 30 days</span>.</p>
-          <p slot="success">Please check back later.</p>
+            <span data-days-left>in 30 days</span>. In the meantime, why don't you help to spread the word?</p>
+          <p slot="success" class="share">
+            <a href="https://twitter.com/intent/tweet/?text=Share%20your%20thoughts%20on%20funding%20in%20open-source%20projects.%20https%3A%2F%2Fopensourcefunding.github.io%20%23OpenSourceFunding"
+              rel="noopener noreferrer" target="_blank" aria-label="Share on Twitter">
+              <ui-icon icon="twitter"></ui-icon>
+            </a>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fopensourcefunding.github.io"
+              rel="noopener noreferrer" target="_blank" aria-label="Share on Facebook">
+              <ui-icon icon="facebook"></ui-icon>
+            </a>
+            <a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fopensourcefunding.github.io&title=Share%20your%20thoughts%20on%20funding%20in%20open-source%20projects.&summary="
+              rel="noopener noreferrer" target="_blank" aria-label="Share on LinkedIn">
+              <ui-icon icon="linkedin"></ui-icon>
+            </a>
+          </p>
 
           <h2 slot="error">There was an error submitting your survey.</h2>
           <p slot="error">To try again please click the button below.</p>
