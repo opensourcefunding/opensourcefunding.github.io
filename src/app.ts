@@ -89,11 +89,11 @@ const ROUTES: Routes = {
 
 async function bootstrap () {
 
+    manageCookies();
+
     const router = new Router(ROUTES);
 
     router.start();
-
-    manageCookies();
 }
 
 window.addEventListener('DOMContentLoaded', () => {

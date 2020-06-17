@@ -2,51 +2,50 @@ const TRACKING_ID = 'UA-16350314-4';
 
 export class AnalyticsManager {
 
-    protected script: HTMLScriptElement | undefined;
+    protected enabled = false;
 
-    protected queue: any[];
+    protected queue: any[] = [];
+
+    protected gtag: (...args: any[]) => void;
 
     get isEnabled (): boolean {
 
-        return !!this.script;
+        return this.enabled;
     }
 
     constructor (protected trackingId: string, protected config = { anonymize_ip: true }) {
 
-        this.queue = [];
+        (window as any).dataLayer = (window as any).dataLayer || [];
 
-        this.push('js', new Date());
-
-        this.push('config', this.trackingId, this.config);
+        this.gtag = function () { (window as any).dataLayer.push(arguments); }
     }
 
     enable () {
 
         if (this.isEnabled) return;
 
-        this.load();
+        this.enabled = true;
+
+        this.gtag('js', new Date());
+
+        this.gtag('config', this.trackingId, this.config);
+
+        // send all queued events from before the cookie consent
+        this.queue.forEach(event => this.gtag(...event));
+
+        this.queue = [];
     }
 
     event (name: string, data?: any) {
 
-        this.push('event', name, data);
-    }
+        if (!this.isEnabled) {
 
-    protected load () {
+            this.queue.push(['event', name, data]);
 
-        this.script = document.createElement('script') as HTMLScriptElement;
+        } else {
 
-        this.script.src = `https://www.googletagmanager.com/gtag/js?id=${ this.trackingId }`;
-        this.script.async = true;
-
-        document.head.append(this.script);
-
-        (window as any).dataLayer = this.queue;
-    }
-
-    protected push (...args: any[]) {
-
-        this.queue.push(args);
+            this.gtag('event', name, data);
+        }
     }
 }
 
