@@ -236,6 +236,11 @@ export class SurveyForm extends HTMLFormElement {
 
         this.loadingState();
 
+        const result = {
+            ...this.getResult(),
+            timestamp: new Date().getTime(),
+        };
+
         try {
 
             const response = await fetch('https://us-central1-opensourcefunding-8646c.cloudfunctions.net/postSurvey', {
@@ -243,7 +248,7 @@ export class SurveyForm extends HTMLFormElement {
                     'Content-Type': 'application/json'
                 },
                 method: 'POST',
-                body: JSON.stringify(this.getResult()),
+                body: JSON.stringify(result),
             });
 
             const surveyId = await response.text();
