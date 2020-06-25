@@ -425,7 +425,7 @@ body>footer>nav>ul>li>a {
     }
 
     100% {
-        background-position: min(calc(100vw - 3rem), 37rem) 0px;
+        background-position: min(calc(100vw - 4rem), var(--width)) 0px;
     }
 }
 
