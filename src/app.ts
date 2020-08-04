@@ -1,13 +1,14 @@
+import { Analytics } from './analytics';
 import './elements/check-box';
 import './elements/form-group';
 import './elements/icon';
 import './elements/radio-button';
 import './elements/radio-group';
 import './elements/select';
-import './elements/survey-question';
 import './elements/survey-end';
 import './elements/survey-form';
-import { Analytics } from './analytics';
+import './elements/survey-question';
+import { END_DATE } from './end-date';
 import { Router, Routes } from './router';
 
 const showCookiePopup = () => {
@@ -59,7 +60,7 @@ const initCallToAction = () => {
 
         event.preventDefault();
 
-        document.location.hash = 'survey';
+        document.location.hash = 'results';
     });
 };
 
@@ -119,7 +120,7 @@ async function bootstrap () {
 
     initCallToAction();
 
-    initDaysLeft(new Date('2020-07-31'));
+    initDaysLeft(END_DATE);
 
     const router = new Router(ROUTES);
 

@@ -1,3 +1,4 @@
+import { END_DATE } from '../end-date';
 import { Icon } from './icon';
 import { SurveyEnd } from './survey-end';
 import { SurveyQuestion } from './survey-question';
@@ -52,6 +53,11 @@ export class SurveyForm extends HTMLFormElement {
 
         this.createNext();
 
+        if (END_DATE.getTime() < new Date().getTime()) {
+
+            this.finishedState();
+        }
+
         this.update();
 
         this.addListeners();
@@ -103,8 +109,8 @@ export class SurveyForm extends HTMLFormElement {
 
         if (this.active === this.total) {
 
-            this.previous.remove();
-            this.next.remove();
+            this.previous?.remove();
+            this.next?.remove();
 
             this.end.setAttribute('aria-hidden', 'false');
 
@@ -113,7 +119,7 @@ export class SurveyForm extends HTMLFormElement {
             this.end.setAttribute('aria-hidden', 'true');
 
             this.previous.disabled = this.active === 0;
-            this.next.disabled = !this.questions.item(this.active).isValid();
+            this.next.disabled = !this.questions.item(this.active)?.isValid();
 
             if (this.active === this.total - 1) {
 
@@ -305,6 +311,15 @@ export class SurveyForm extends HTMLFormElement {
         }
 
         again.addEventListener('click', handler);
+    }
+
+    protected finishedState () {
+
+        this.active = this.total;
+
+        this.end.state = 'finished';
+
+        this.update();
     }
 
     protected addListeners () {

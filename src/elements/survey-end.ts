@@ -5,6 +5,7 @@ TEMPLATE.innerHTML = `
 <slot name="loading"></slot>
 <slot name="success"></slot>
 <slot name="error"></slot>
+<slot name="finished"></slot>
 `;
 
 let STYLE: CSSStyleSheet | HTMLStyleElement;
@@ -28,6 +29,9 @@ const STYLE_CONTENT = `
 :host([state=error]) slot[name=error] {
     display: initial;
 }
+:host([state=finished]) slot[name=finished] {
+    display: initial;
+}
 `;
 
 try {
@@ -41,9 +45,9 @@ try {
     STYLE.innerText = STYLE_CONTENT;
 }
 
-export type SurveyState = 'initial' | 'loading' | 'success' | 'error';
+export type SurveyState = 'initial' | 'loading' | 'success' | 'error' | 'finished';
 
-const SURVEY_STATES: SurveyState[] = ['initial', 'loading', 'success', 'error'];
+const SURVEY_STATES: SurveyState[] = ['initial', 'loading', 'success', 'error', 'finished'];
 
 export class SurveyEnd extends HTMLElement {
 
