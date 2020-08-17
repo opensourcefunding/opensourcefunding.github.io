@@ -28,9 +28,9 @@
         <li><a href="#home">
             <ui-icon icon="home"></ui-icon>Home
           </a></li>
-        <li><a href="#survey">
+        <!-- <li><a href="#survey">
             <ui-icon icon="list"></ui-icon>Survey
-          </a></li>
+          </a></li> -->
         <li><a href="#results">
             <ui-icon icon="analysis"></ui-icon>Results
           </a></li>
@@ -588,9 +588,159 @@
 
     <section id="results">
       <h1 class="visually-hidden">Survey Results</h1>
-      <h2>The survey results are being prepared.</h2>
-      <p>The survey has finished and we're working on preparing the results.</p>
-      <p>Please check back soon to see the results.</p>
+
+      <pie-chart total="43">
+        <h3 slot="title">Who do you think benefits most from OpenSource software?</h3>
+        <chart-data value="14" label="community">The OpenSource community as a whole</chart-data>
+        <chart-data value="29" label="companies">Commercially successful companies built on OpenSource technology
+        </chart-data>
+      </pie-chart>
+
+      <pie-chart total="43">
+        <h3 slot="title">What is your role in OpenSource?</h3>
+        <chart-data value="24" label="contributor">I'm a contributor</chart-data>
+        <chart-data value="19" label="user">I'm a user</chart-data>
+      </pie-chart>
+
+      <bar-chart class="dense" total="43">
+        <h3 slot="title">What are your main motivations for contributing to OpenSource projects?</h3>
+        <chart-data value="19" label="community">Being part of and giving back to the community</chart-data>
+        <chart-data value="17" label="sharing">Sharing knowledge</chart-data>
+        <chart-data value="15" label="recognition">Advancing my carreer, building a portfolio or reputation
+        </chart-data>
+        <chart-data value="18" label="learning">Learning new skills and technologies</chart-data>
+        <chart-data value="21" label="passion">Working on projects I care about</chart-data>
+      </bar-chart>
+
+      <bar-chart class="dense" total="43">
+        <h3 slot="title">What are your main motivations for using OpenSource software?</h3>
+        <chart-data value="36" label="free">It's free to use</chart-data>
+        <chart-data value="29" label="trust">I trust OpenSource software</chart-data>
+        <chart-data value="28" label="transparency">I have access to the source code</chart-data>
+        <chart-data value="28" label="flexibility">I can submit fixes and features which I need</chart-data>
+        <chart-data value="28" label="independence">I'm not locked in by a vendor</chart-data>
+      </bar-chart>
+
+      <pie-chart total="43">
+        <h3 slot="title">Do you think OpenSource developers should be compensated for the value they create?</h3>
+        <chart-data value="42" label="yes">Yes</chart-data>
+        <chart-data value="1" label="no">No</chart-data>
+      </pie-chart>
+
+      <bar-chart total="43">
+        <h3 slot="title">What do you think is a fair compensation for OpenSource work?</h3>
+        <chart-data value="35" label="financial">There should be financial compensation</chart-data>
+        <chart-data value="28" label="reputation">The exposure and reputation gained from OpenSource work</chart-data>
+        <chart-data value="14" label="experience">Working on OpenSource is a reward in itself</chart-data>
+      </bar-chart>
+
+      <bar-chart total="43">
+        <h3 slot="title">Which criteria would you include in determining a fair compensation for OpenSource work?</h3>
+        <chart-data value="24" label="time">The amount of time and work that went into the OpenSource project
+        </chart-data>
+        <chart-data value="20" label="usage">The popularity of the OpenSource project, e.g. by usage</chart-data>
+        <chart-data value="36" label="value">The value or benefit the OpenSource project adds</chart-data>
+      </bar-chart>
+
+      <pie-chart total="42">
+        <h3 slot="title">Who do you think should be responsible for compensating OpenSource work?</h3>
+        <chart-data value="12" label="everybody">Every user of OpenSource software</chart-data>
+        <chart-data value="30" label="commercial">Commercial users of OpenSource software</chart-data>
+      </pie-chart>
+
+      <pie-chart total="43">
+        <h3 slot="title">Do you think OpenSource projects and their maintainers and contributors are currently being
+          sufficiently compensated?</h3>
+        <chart-data value="5" label="yes">Yes</chart-data>
+        <chart-data value="38" label="no">No</chart-data>
+      </pie-chart>
+
+      <bar-chart total="43">
+        <h3 slot="title">Which of the existing funding models addresses OpenSource funding needs best?</h3>
+        <chart-data value="28" label="donations">Donations</chart-data>
+        <chart-data value="25" label="crowdfunding">Crowdfunding</chart-data>
+        <chart-data value="27" label="sponsorships">Sponsorships</chart-data>
+        <chart-data value="16" label="grants">Grants</chart-data>
+      </bar-chart>
+
+      <pie-chart total="43">
+        <h3 slot="title">Do you think OpenSource developers should receive a share of the commercial success of
+          products and services that are built on top of their software?</h3>
+        <chart-data value="30" label="yes">Yes</chart-data>
+        <chart-data value="13" label="no">No</chart-data>
+      </pie-chart>
+
+      <pie-chart total="43">
+        <h3 slot="title">Do you think financial compensation for OpenSource contributors would have a positive effect on
+          the OpenSource community and the quality and long-term maintenance of OpenSource software?</h3>
+        <chart-data value="40" label="yes">Yes</chart-data>
+        <chart-data value="3" label="no">No</chart-data>
+      </pie-chart>
+
+      <bar-chart total="43">
+        <h3 slot="title">How long have you been working with OpenSource software?</h3>
+        <chart-data value="5" label="novice">less than 1 year</chart-data>
+        <chart-data value="7" label="junior">1 - 2 years</chart-data>
+        <chart-data value="9" label="medior">2 - 5 years</chart-data>
+        <chart-data value="14" label="senior">5 - 10 years</chart-data>
+        <chart-data value="8" label="veteran">more than 10 years</chart-data>
+      </bar-chart>
+
+      <bar-chart total="43">
+        <h3 slot="title">How do you use OpenSource software?</h3>
+        <chart-data value="26" label="professional">In my professional work</chart-data>
+        <chart-data value="40" label="hobby">As a hobby or side project</chart-data>
+      </bar-chart>
+
+      <bar-chart total="24">
+        <h3 slot="title">How frequently do you contribute to OpenSource software on average?</h3>
+        <chart-data value="13" label="high">Multiple times per week</chart-data>
+        <chart-data value="6" label="medium">Multiple times per month</chart-data>
+        <chart-data value="4" label="low">Multiple times per year</chart-data>
+        <chart-data value="1" label="very_low">Less than once per year</chart-data>
+      </bar-chart>
+
+      <bar-chart total="43">
+        <h3 slot="title">How do you work?</h3>
+        <chart-data value="10" label="self">I'm self-employed</chart-data>
+        <chart-data value="17" label="company">I work for a company</chart-data>
+        <chart-data value="16" label="none">I'm not employed</chart-data>
+      </bar-chart>
+
+      <map-chart total="43">
+        <h3 slot="title">Where do you live?</h3>
+        <chart-data value="8" label="IN">India</chart-data>
+        <chart-data value="5" label="DE">Germany</chart-data>
+        <chart-data value="5" label="US">United States</chart-data>
+        <chart-data value="3" label="ES">Spain</chart-data>
+        <chart-data value="2" label="BR">Brazil</chart-data>
+        <chart-data value="2" label="CA">Canada</chart-data>
+        <chart-data value="2" label="FR">France</chart-data>
+        <chart-data value="2" label="GB">United Kingdom</chart-data>
+        <chart-data value="1" label="DZ">Algeria</chart-data>
+        <chart-data value="1" label="AR">Argentina</chart-data>
+        <chart-data value="1" label="AU">Australia</chart-data>
+        <chart-data value="1" label="CO">Colombia</chart-data>
+        <chart-data value="1" label="DK">Denmark</chart-data>
+        <chart-data value="1" label="ID">Indonesia</chart-data>
+        <chart-data value="1" label="RO">Romania</chart-data>
+        <chart-data value="1" label="RU">Russian Federation</chart-data>
+        <chart-data value="1" label="RS">Serbia</chart-data>
+        <chart-data value="1" label="SK">Slovakia</chart-data>
+        <chart-data value="1" label="SE">Sweden</chart-data>
+        <chart-data value="1" label="TH">Thailand</chart-data>
+        <chart-data value="1" label="AE">United Arab Emirates</chart-data>
+        <chart-data value="1" label="VN">Vietnam</chart-data>
+      </map-chart>
+
+      <bar-chart total="43">
+        <h3 slot="title">What is your gender?</h3>
+        <chart-data value="35" label="male">Male</chart-data>
+        <chart-data value="2" label="female">Female</chart-data>
+        <chart-data value="1" label="non_binary">Non-Binary/Third Gender</chart-data>
+        <chart-data value="5" label="private">Prefer not to say</chart-data>
+      </bar-chart>
+
     </section>
 
     <section id="privacy">
@@ -654,8 +804,8 @@
       <p>A cookie is a small text file that a website stores on your computer or mobile device when you visit the site.
         When you visit our website, we may collect information from you automatically through cookies or similar
         technology.</p>
-      <p>For further information, visit <a href="https://www.allaboutcookies.org/"
-          target="_blank">allaboutcookies.org</a>.</p>
+      <p>For further information, visit <a href="https://www.allaboutcookies.org/" target="_blank"
+          rel="noreferrer">allaboutcookies.org</a>.</p>
 
       <h3>How do we use cookies?</h3>
       <p>Our website uses third-party cookies to collect usage statistics and understand how you use our website.</p>
@@ -669,7 +819,8 @@
         identify you personally. In addition, we do not share this data with any third parties or use it for any other
         purpose than described above.</p>
       <p>For more information on how Google uses data when you use our website, please view <a
-          href="https://policies.google.com/technologies/partner-sites">Google's Privacy Policy</a>.</p>
+          href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noreferrer">Google's
+          Privacy Policy</a>.</p>
 
       <h3>How to manage cookies?</h3>
 
@@ -688,7 +839,7 @@
         work properly at all (e.g. profile logging-in).</p>
 
       <p>For more details on how to manage/delete cookies, visit <a href="https://www.allaboutcookies.org/"
-          target="_blank">allaboutcookies.org</a>.</p>
+          target="_blank" rel="noreferrer">allaboutcookies.org</a>.</p>
 
       <h2>Privacy policies of other websites</h2>
       <p>Our website contains links to other websites. Our privacy policy applies only to our website, so if you click

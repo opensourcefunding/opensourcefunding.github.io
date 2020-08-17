@@ -8,6 +8,9 @@ import './elements/select';
 import './elements/survey-end';
 import './elements/survey-form';
 import './elements/survey-question';
+import './elements/charts/bar-chart';
+import './elements/charts/pie-chart';
+import './elements/charts/map-chart';
 import { END_DATE } from './end-date';
 import { Router, Routes } from './router';
 
@@ -108,7 +111,7 @@ const handleNavigation = (page: string) => {
 
 const ROUTES: Routes = {
     '#home': () => handleNavigation('home'),
-    '#survey': () => handleNavigation('survey'),
+    // '#survey': () => handleNavigation('survey'),
     '#results': () => handleNavigation('results'),
     '#privacy': () => handleNavigation('privacy'),
     '**': () => handleNavigation('home'),

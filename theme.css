@@ -5,8 +5,10 @@
     --font-size: calc(4/3 * var(--grid));
     --line-height: calc(2 * var(--grid));
     --color-primary: dodgerblue;
+    --color-secondary: lightcoral;
     --color-primary-contrast: #fff;
     --color-text: #333;
+    --color-text-inverted: #fff;
     --color-text-secondary: #888;
     --color-text-disabled: #999;
     --color-link: #666;
@@ -18,6 +20,8 @@
     --background-color-button: #ccc;
     --background-color-button-active: #bbb;
     --background-color-button-disabled: #e5e5e5;
+    --background-color-highlight: rgba(0, 0, 0, .1);
+    --outline-color-highlight: rgb(83, 82, 94);
     --border-radius: calc(1/6 * var(--grid));
     --border-width: calc(1/6 * var(--grid));
     --border-color: #bbb;
@@ -38,7 +42,7 @@ html {
     -webkit-font-smoothing: antialiased;
 }
 
-html * {
+* {
     font: inherit;
     color: inherit;
     line-height: inherit;
@@ -599,6 +603,16 @@ form-group>label+ui-select {
     margin-right: 2rem;
 }
 
+/*********************
+* RESULTS
+*********************/
+
+bar-chart,
+pie-chart,
+map-chart {
+    margin: 2rem 2rem 6rem;
+}
+
 @media (min-width: 70ch) and (min-height: 40rem) {
 
     #home,
@@ -643,6 +657,7 @@ form-group>label+ui-select {
 
     :root {
         --color-text: #fff;
+        --color-text-inverted: #212527;
         --color-text-secondary: #899;
         --color-text-disabled: #9aa;
         --color-link: #899;
@@ -654,6 +669,8 @@ form-group>label+ui-select {
         --background-color-button: #585b5c;
         --background-color-button-active: #606769;
         --background-color-button-disabled: #414344;
+        --background-color-highlight: rgba(255, 255, 255, .1);
+        --outline-color-highlight: #fff;
         --border-color: #585b5c;
     }
 
