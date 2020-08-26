@@ -1,5 +1,5 @@
-export const axis = () => `
-.chart>.axis.vertical {
+export const axis = () =>
+`.chart>.axis.vertical {
     width: 100%;
     height: 0;
     position: absolute;
@@ -16,7 +16,6 @@ export const axis = () => `
     padding-right: .5rem;
     color: var(--color-text-secondary);
 }
-
 .chart>.axis.horizontal {
     width: 0;
     height: 100%;
@@ -40,5 +39,4 @@ export const axis = () => `
 }
 .chart>.axis.horizontal:last-of-type::before {
     transform: translate(-100%, 0);
-}
-`;
+}`;

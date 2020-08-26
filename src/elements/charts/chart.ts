@@ -2,9 +2,7 @@ import { chart } from './styles/chart.style';
 
 let STYLE: CSSStyleSheet | HTMLStyleElement;
 
-const STYLE_CONTENT = `
-${ chart() }
-`;
+const STYLE_CONTENT = `${ chart() }`;
 
 try {
 
@@ -97,7 +95,19 @@ export abstract class Chart extends HTMLElement {
 
     protected render () {
 
+        const style = this.shadowRoot!.querySelector('style');
+
+        if (style) {
+
+            this.shadowRoot!.removeChild(style);
+        }
+
         this.shadowRoot!.innerHTML = this.template();
+
+        if (style) {
+
+            this.shadowRoot!.prepend(style);
+        }
 
         this.updateBindings();
     }

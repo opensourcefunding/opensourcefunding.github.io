@@ -1,10 +1,9 @@
-export const legend = () => `
-.legend {
+export const legend = () =>
+`.legend {
     padding-top: 2rem;
     display: flex;
     flex-flow: column;
 }
-
 .legend>.entry {
     padding: 0 1rem;
     display: flex;
@@ -21,19 +20,8 @@ export const legend = () => `
     box-shadow: 0 -.5rem 0 0 var(--background-color-highlight),
     0 .5rem 0 0 var(--background-color-highlight);
 }
-
-.legend>.entry>* {
-
-}
-.legend>.entry:not(:last-child)>* {
-
-}
 .legend>.entry>*:not(:last-child) {
     margin-right: 1rem;
-}
-
-.legend>.entry>.color {
-
 }
 .legend>.entry>.color:after {
     content: '';
@@ -46,19 +34,15 @@ export const legend = () => `
 .legend>.entry:first-child>.color:after {
     background-color: var(--color-primary);
 }
-
 .legend>.entry>.label {
     font-weight: bold;
     flex: 0 0 9rem;
 }
-
 .legend>.entry>.value {
     font-weight: bold;
     text-align: right;
     flex: 0 0 5rem;
 }
-
 .legend>.entry>.description {
     flex: 1 1 100%;
-}
-`;
+}`;

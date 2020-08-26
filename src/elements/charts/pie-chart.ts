@@ -21,7 +21,6 @@ ${ chart() }
     font-size: 1rem;
     box-sizing: border-box;
 }
-
 .chart>.value {
     position: absolute;
     color: var(--color-primary-contrast);
@@ -33,7 +32,6 @@ ${ chart() }
     pointer-events: none;
     user-select: none;
 }
-
 .chart>svg {
     min-width: 20rem;
     min-height: 20rem;

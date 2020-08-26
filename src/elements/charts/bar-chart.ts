@@ -22,12 +22,10 @@ ${ axisStyle() }
     font-size: 1rem;
     box-sizing: border-box;
 }
-
 :host(.dense) .chart {
     margin-bottom: 6rem;
     transition: margin 250ms;
 }
-
 .chart .data {
     position: relative;
     padding: 0 .5rem;
@@ -76,6 +74,7 @@ ${ axisStyle() }
 }
 .chart .label {
     position: absolute;
+    bottom: 0;
     max-width: 100%;
     padding: .5rem .25rem;
     text-align: center;
@@ -94,9 +93,7 @@ ${ axisStyle() }
     transition-property: transform, text-align;
     transition-duration: 250ms;
 }
-
 @media (min-width: 50ch) {
-
     :host(.dense) .chart {
         margin-bottom: 3rem;
     }
