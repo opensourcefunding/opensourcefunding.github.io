@@ -1,4 +1,4 @@
-const TRACKING_ID = 'UA-16350314-4';
+const TRACKING_ID = 'G-MC7GYYDV94';
 
 export class AnalyticsManager {
 
